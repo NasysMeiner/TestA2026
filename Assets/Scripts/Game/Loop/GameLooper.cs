@@ -16,6 +16,8 @@ public class GameLooper : MonoBehaviour
     {
         _player = player;
         _enemy = enemy;
+
+        _player.RegenerateHealthPoints();
     }
 
     internal void MakeOneLoop()

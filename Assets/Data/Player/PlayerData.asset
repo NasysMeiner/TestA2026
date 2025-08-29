@@ -17,5 +17,5 @@ MonoBehaviour:
   Players:
   - TypeClass: 0
     PrefabPlayer: {fileID: 8206001454839965445, guid: 4ee17e6433cd69c4d8f55dd4f1ee0d5e, type: 3}
-    HealthPointPerLevel: 4
+    HealthPointPerLevel: 20
     TypeWeapon: 1

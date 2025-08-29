@@ -10,6 +10,7 @@ public class Entity
     public TypeEntity TypeEntity { get; private set; }
     public Weapon Weapon { get; private set; }
     public float HealPoint { get; private set; }
+    public float MaxHealPoint { get; private set; }
     public int Strength { get; private set; }
     public int Dexterity { get; private set; }
     public int Endurance { get; private set; }
@@ -19,6 +20,7 @@ public class Entity
         TypeEntity = parameters.TypeEntity;
         Weapon = parameters.Weapon;
         HealPoint = parameters.HealthPoint;
+        MaxHealPoint = parameters.HealthPoint;
         Strength = parameters.Strength;
         Dexterity = parameters.Dexterity;
         Endurance = parameters.Endurance;
@@ -39,5 +41,10 @@ public class Entity
 
         if (HealPoint <= 0)
             data.IsDead = true;
+    }
+
+    public void RegenerateHealthPoints()
+    {
+        HealPoint = MaxHealPoint + 100;
     }
 }

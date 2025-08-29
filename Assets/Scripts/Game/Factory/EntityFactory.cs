@@ -69,6 +69,9 @@ public class EntityFactory : MonoBehaviour
         else
         {
             enemyData = _enemyData.Enemies[_currentEnemy++];
+
+            if (_currentEnemy >= _enemyData.Enemies.Count)
+                _currentEnemy = 0;
         }
 
         generated.EntityUi = Instantiate(enemyData.PrefabEnemy);

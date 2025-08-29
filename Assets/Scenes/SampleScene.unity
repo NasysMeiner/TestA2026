@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 1805370324}
-  _locQue: 0200000001000000
+  _locQue: 020000000300000001000000
   _factory: {fileID: 1866022818}
   _locationFactory: {fileID: 1866022816}
   _locationData: {fileID: 11400000, guid: 68ef441f78a7aef4d941f13ad8c94b13, type: 2}

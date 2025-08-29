@@ -37,7 +37,6 @@ public class LocationManager : MonoBehaviour
         {
             _playerUi = playerUi;
             _playerUi.transform.position = _playerStartPoint.transform.position;
-            _playerUi.transform.SetParent(gameObject.transform);
             _playerUi.AtPoint += OnAtPoint;
         }
         
@@ -108,7 +107,6 @@ public class LocationManager : MonoBehaviour
         if (_playerUi != null)
         {
             _playerUi.AtPoint -= OnAtPoint;
-            Destroy(_playerUi.gameObject);
         }
 
         if (_enemyUi != null)

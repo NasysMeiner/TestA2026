@@ -41,14 +41,18 @@ public class GameManager : MonoBehaviour
 
     public void CreateLevel()
     {
+        if (_locationManager != null)
+            DeleteLevel();
+
         //Location
         CreateLocation(_queueLocations.Dequeue());
 
         //Enemy
         CreateEnemy(_locationManager.TypeLocation);
 
-        _locationManager.Init(_currentSession.Player.EntityUi, _currentSession.Enemy.EntityUi);
         _gameLooper.Init(_currentSession.Player.Entity, _currentSession.Enemy.Entity);
+        Debug.Log(_currentSession.Player.Entity.HealPoint);
+        _locationManager.Init(_currentSession.Player.EntityUi, _currentSession.Enemy.EntityUi);
 
         _locationManager.StartLocation();
     }
@@ -92,7 +96,10 @@ public class GameManager : MonoBehaviour
 
     private void OnDeath(Entity deathEntity)
     {
-        _displayController.ActivateDeathPlayerWindow();
+        if (deathEntity.TypeEntity == TypeEntity.Player)
+            _displayController.ActivateDeathPlayerWindow();
+        else
+            _displayController.ActivateNextLocationWindow();
     }
 
     private void UnsubscribeAllEvent()
@@ -109,8 +116,14 @@ public class GameManager : MonoBehaviour
 
     private void DeleteLastSession()
     {
-        UnsubscribeAllEvent();
         _queueLocations.Clear();
+        DeleteLevel();
+        Destroy(_currentSession.Player.EntityUi.gameObject);
+    }
+
+    private void DeleteLevel()
+    {
+        UnsubscribeAllEvent();
         Destroy(_locationManager.gameObject);
         Destroy(_gameLooper.gameObject);
     }
