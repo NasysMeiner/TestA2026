@@ -37,6 +37,8 @@ public class Entity
 
     public void TakeDamage(DamageData data)
     {
+        data.Target = this;
+
         HealPoint -= data.Damage + data.DamageWeapon;
 
         if (HealPoint <= 0)
@@ -45,6 +47,6 @@ public class Entity
 
     public void RegenerateHealthPoints()
     {
-        HealPoint = MaxHealPoint + 100;
+        HealPoint = MaxHealPoint;
     }
 }

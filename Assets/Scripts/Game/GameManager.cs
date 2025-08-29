@@ -51,8 +51,9 @@ public class GameManager : MonoBehaviour
         CreateEnemy(_locationManager.TypeLocation);
 
         _gameLooper.Init(_currentSession.Player.Entity, _currentSession.Enemy.Entity);
-        Debug.Log(_currentSession.Player.Entity.HealPoint);
         _locationManager.Init(_currentSession.Player.EntityUi, _currentSession.Enemy.EntityUi);
+
+        _displayController.SetStats(_currentSession.Player.Entity, _currentSession.Enemy.Entity);
 
         _locationManager.StartLocation();
     }
@@ -91,6 +92,8 @@ public class GameManager : MonoBehaviour
     private void OnEndOneLoop(DamageData damageData)
     {
         Debug.Log("start anim...");
+        _displayController.SetStats(_currentSession.Player.Entity, _currentSession.Enemy.Entity);
+
         _locationManager.StartAnimationAttack(damageData);
     }
 

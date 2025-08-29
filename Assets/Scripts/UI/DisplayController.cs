@@ -6,6 +6,9 @@ public class DisplayController : MonoBehaviour
     [SerializeField] private GameObject _nextLocationWindow;
     [SerializeField] private SelectorClass _createSessionWindow;
 
+    [SerializeField] private StatsView _statsViewPlayer;
+    [SerializeField] private StatsView _statsViewEnemy;
+
     private GameManager _gameManager;
 
     private bool _isCreated = false;
@@ -46,5 +49,18 @@ public class DisplayController : MonoBehaviour
         _deathPlayerWindow.SetActive(false);
         _createSessionWindow.gameObject.SetActive(true);
         _createSessionWindow.ActiveWindow();
+    }
+
+    public void SetStats(Entity player, Entity enemy)
+    {
+        if (player != null)
+            _statsViewPlayer.SetStats(player);
+        else
+            _statsViewPlayer.SetStats();
+
+        if (enemy != null)
+            _statsViewEnemy.SetStats(enemy);
+        else
+            _statsViewEnemy.SetStats();
     }
 }
