@@ -3,9 +3,13 @@ using UnityEngine;
 
 public class SelectorClass : MonoBehaviour
 {
+    [SerializeField] private DisplayController _displayController;
+
     private List<SelectorButtonClass> _buttons = new();
 
     private SelectorButtonClass _currentButtonClass = null;
+
+    private bool _isCreate = false;
 
     public void SetTypeClass(SelectorButtonClass buttonClass)
     {
@@ -16,9 +20,18 @@ public class SelectorClass : MonoBehaviour
         _currentButtonClass.DisableButton();
     }
 
+    public void ActiveWindow()
+    {
+        _isCreate = false;
+    }
+
     public void GenerateGame()
     {
-        //if(_currentButtonClass != null)
-        //GameManager.Generate(_currentButtonClass.TypeClass);
+        if(!_isCreate)
+        {
+            _isCreate = true;
+            _displayController.CreateSession(TypeClass.Warrior);
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -1,24 +1,43 @@
 using System.Collections.Generic;
 
-public abstract class Entity
+public class Entity
 {
-    protected float _healPoint;
-    protected int _strength;
-    protected int _dexterity;
-    protected int _endurance;
+    private List<ISkill> _damageSkills = new();
+    private List<ISkill> _deffSkills = new();
+    private List<IAttribute> _buffs = new();
+    private List<IAttribute> _debuffs = new();
 
-    protected List<ISkill> _damageSkills = new();
-    protected List<ISkill> _deffSkills = new();
-    protected List<IAttribute> _buffs = new();
-    protected List<IAttribute> _debuffs = new();
+    public TypeEntity TypeEntity { get; private set; }
+    public Weapon Weapon { get; private set; }
+    public float HealPoint { get; private set; }
+    public int Strength { get; private set; }
+    public int Dexterity { get; private set; }
+    public int Endurance { get; private set; }
 
-    public void CalculateDamage(DamageData data)
+    public Entity(GeneratedParameters parameters)
     {
+        TypeEntity = parameters.TypeEntity;
+        Weapon = parameters.Weapon;
+        HealPoint = parameters.HealthPoint;
+        Strength = parameters.Strength;
+        Dexterity = parameters.Dexterity;
+        Endurance = parameters.Endurance;
+    }
 
+    public void CalculateDamage(DamageData data, Entity target)
+    {
+        data.IsDead = false;
+        data.Attacker = this;
+        data.Damage = Strength;
+        data.TypeDamage = Weapon.TypeDamage;
+        data.DamageWeapon = Weapon.Damage;
     }
 
     public void TakeDamage(DamageData data)
     {
+        HealPoint -= data.Damage + data.DamageWeapon;
 
+        if (HealPoint <= 0)
+            data.IsDead = true;
     }
 }

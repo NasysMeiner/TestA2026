@@ -34,16 +34,16 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,7 +108,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Orc-Attack02_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 43
+        width: 22
+        height: 15
+      alignment: 9
+      pivot: {x: 0.34980097, y: 0.44916356}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc29e3b0328e9124896c3846b75b5d22
+      internalID: -136887148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Orc-Attack02_1
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 43
+        width: 19
+        height: 24
+      alignment: 9
+      pivot: {x: 0.7541833, y: 0.33054462}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88ba447d33373334a9b749bad5cd4911
+      internalID: -420091492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Orc-Attack02_2
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 43
+        width: 19
+        height: 23
+      alignment: 9
+      pivot: {x: 0.7274274, y: 0.34527987}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30b3e7ce0958b904d89e70c1d02e50b3
+      internalID: 1465521923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Orc-Attack02_3
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 34
+        width: 29
+        height: 30
+      alignment: 9
+      pivot: {x: 0.2721126, y: 0.576255}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b652f0bb2bbb154b904e29bceed54fd
+      internalID: -151250768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Orc-Attack02_4
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 34
+        width: 22
+        height: 25
+      alignment: 9
+      pivot: {x: 0.33824852, y: 0.6931792}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5c94d6eb6365874a8eeb6af7c0fa442
+      internalID: -460108819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Orc-Attack02_5
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 37
+        width: 17
+        height: 20
+      alignment: 9
+      pivot: {x: 0.44019273, y: 0.6016731}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b3c9144df84c7648b023b2571bb1233
+      internalID: -1988581481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +245,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Orc-Attack02_0: -136887148
+      Orc-Attack02_1: -420091492
+      Orc-Attack02_2: 1465521923
+      Orc-Attack02_3: -151250768
+      Orc-Attack02_4: -460108819
+      Orc-Attack02_5: -1988581481
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

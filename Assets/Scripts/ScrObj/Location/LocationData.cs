@@ -5,9 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Location/LocationData")]
 public class LocationData : ScriptableObject
 {
-    public bool IsRandom;
-    public bool IsUnique;
     public List<Location> Locations;
+    public GameLooper PrefabGameLooper;
 }
 
 [Serializable]

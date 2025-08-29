@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: ShopLocation
   m_EditorClassIdentifier: 
   Locations:
-  - TypeLocation: 0
+  - TypeLocation: 1
     PrefabLocation: {fileID: 1173760790557515087, guid: 9ff827350ecf52841825c80dad67bd27, type: 3}
+  - TypeLocation: 2
+    PrefabLocation: {fileID: 7725845467160178935, guid: c2093e53b16509d4e8abf52d9a248fe0, type: 3}
+  PrefabGameLooper: {fileID: 847606483309613222, guid: c5fd510ad307a694da2816215247afb5, type: 3}

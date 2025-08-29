@@ -1,23 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Factory : MonoBehaviour
 {
     private LocationFactory _locationFactory;
-    private PlayerFactory _playerFactory;
+    private EntityFactory _entityFactory;
 
-    public void Init(LocationFactory locationFactory, PlayerFactory playerFactory)
+    public void Init(LocationFactory locationFactory, EntityFactory playerFactory)
     {
         _locationFactory = locationFactory;
-        _playerFactory = playerFactory;
+        _entityFactory = playerFactory;
     }
 
-    public GeneratedLocation GenerateLocation(TypeClass typeClass, TypeLocation typeLocation)
+    public GeneratedData GenerateEntity(TypeClass typeClass)
     {
-        GeneratedLocation generatedLocation = new();
-        generatedLocation.LocationManager = _locationFactory.CreateLocation(typeLocation);
+        return _entityFactory.CreatePlayer(typeClass);
+    }
 
-        return generatedLocation;
+    public GeneratedData GenerateEntity()
+    {
+        return _entityFactory.CreateEnemy();
+    }
+
+    public GeneratedLocation GenerateLocation(TypeLocation typeLocation)
+    {
+        return _locationFactory.CreateLocation(typeLocation);
+
+        //generatedLocation.GameLooper = _gameLooperFactory.CreateLoop(typeClass);
+
+        //generatedLocation.LocationManager.Init(generatedPlayer.PlayerUi);//????
     }
 }

@@ -34,16 +34,16 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,7 +108,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Soldier-Attack02_0
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 43
+        width: 15
+        height: 18
+      alignment: 9
+      pivot: {x: 0.4999995, y: 0.47284636}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6073f211a793d1141a493de164043463
+      internalID: 1988210823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Soldier-Attack02_1
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 47
+        width: 19
+        height: 22
+      alignment: 9
+      pivot: {x: 0.38191786, y: 0.1816226}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fc1cf7b1886296418778765708abaf2
+      internalID: -1734369324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Soldier-Attack02_2
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 48
+        width: 18
+        height: 20
+      alignment: 9
+      pivot: {x: 0.41981167, y: 0.29189187}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e19977cb8f245b649a3b6395033bbb0f
+      internalID: 1642146611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Soldier-Attack02_3
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 41
+        width: 28
+        height: 23
+      alignment: 9
+      pivot: {x: 0.25168175, y: 0.3302717}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1da65b178b1c3a429d21dff42b454e3
+      internalID: -545631802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Soldier-Attack02_4
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 41
+        width: 28
+        height: 17
+      alignment: 9
+      pivot: {x: 0.26100922, y: 0.55355024}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40140c1f07fd55f429434977d8d97f67
+      internalID: 112655395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Soldier-Attack02_5
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 41
+        width: 28
+        height: 18
+      alignment: 9
+      pivot: {x: 0.26743862, y: 0.5835033}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2221c7d216c261948b363e1fae82f075
+      internalID: 85904017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +245,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Soldier-Attack02_0: 1988210823
+      Soldier-Attack02_1: -1734369324
+      Soldier-Attack02_2: 1642146611
+      Soldier-Attack02_3: -545631802
+      Soldier-Attack02_4: 112655395
+      Soldier-Attack02_5: 85904017
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

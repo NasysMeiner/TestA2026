@@ -1,18 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class DamageData : MonoBehaviour
+public class DamageData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Entity Attacker;
+    public int Damage;
+    public TypeDamage TypeDamage;
+    public int DamageWeapon;
+    public bool IsDead;
 }

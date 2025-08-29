@@ -1,51 +1,37 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LocationFactory : MonoBehaviour
 {
     private LocationData _locationData;
 
-    private Dictionary<TypeLocation, int> _lastLocations;
-    private int _currentLoc = 0;
-
     public void Init(LocationData locationData)
     {
         _locationData = locationData;
     }
 
-    public LocationManager CreateLocation(TypeLocation typeLocation)
+    public GeneratedLocation CreateLocation(TypeLocation typeLocation)
     {
-        Location location;
-
-        if (_locationData.IsRandom)
-        {
-            if (_locationData.IsUnique && _lastLocations.Count == _locationData.Locations.Count)
-                _lastLocations.Clear();
-
-            while (true)
-            {
-                _currentLoc = Random.Range(0, _locationData.Locations.Count);
-
-                if (_locationData.IsUnique)
-                {
-                    if (_lastLocations.ContainsKey(_locationData.Locations[_currentLoc].TypeLocation))
-                        continue;
-                    else
-                        _lastLocations.Add(_locationData.Locations[_currentLoc].TypeLocation, 1);
-                }
-
-                break;
-            }
-
-            location = _locationData.Locations[_currentLoc];
-        }
-        else
-        {
-            location = _locationData.Locations[_currentLoc++];
-        }
+        GeneratedLocation generated = new();
+        Location location = SearchLocation(typeLocation);
 
         LocationManager locationManager = Instantiate(location.PrefabLocation);
+        locationManager.SetTypeLocation(location.TypeLocation);
         locationManager.transform.position = Vector3.zero;
-        return locationManager;
+        generated.LocationManager = locationManager;
+        generated.GameLooper = Instantiate(_locationData.PrefabGameLooper);
+        return generated;
+    }
+
+    private Location SearchLocation(TypeLocation typeLocation)
+    {
+        foreach (Location loc in _locationData.Locations)
+        {
+            if (loc.TypeLocation == typeLocation)
+            {
+                return loc;
+            }
+        }
+
+        return new();
     }
 }
