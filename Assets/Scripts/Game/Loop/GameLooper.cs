@@ -9,6 +9,8 @@ public class GameLooper : MonoBehaviour
     private Entity _attacker = null;
     private Entity _target = null;
 
+    private int _countMoves;
+
     public event UnityAction<DamageData> EndOneLoop;
     public event UnityAction<Entity> Death;
 
@@ -17,6 +19,7 @@ public class GameLooper : MonoBehaviour
         _player = player;
         _enemy = enemy;
 
+        _countMoves = 0;
         _player.RegenerateHealthPoints();
     }
 
@@ -34,13 +37,15 @@ public class GameLooper : MonoBehaviour
         else
             (_attacker, _target) = (_target, _attacker);
 
-        DamageData damageData = new();
+        DamageData damageData = new() { CountMoves = _countMoves, Target = _target };
 
         _attacker.CalculateDamage(damageData, _target);
         _target.TakeDamage(damageData);
 
         Debug.Log("endloop...");
         EndOneLoop?.Invoke(damageData);
+
+        _countMoves++;
     }
 
     private void SelectAttacker()

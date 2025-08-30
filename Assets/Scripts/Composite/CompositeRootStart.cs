@@ -15,6 +15,7 @@ public class CompositeRootStart : CompositeRoot
     [SerializeField] private PlayerData _playerData;
     [SerializeField] private EnemyData _enemyData;
     [SerializeField] private WeaponData _weaponData;
+    [SerializeField] private SkillData _skillData;
     [Header("UI")]
     [SerializeField] private DisplayController _prefabCanvas;
 
@@ -25,7 +26,7 @@ public class CompositeRootStart : CompositeRoot
         _displayController = Instantiate(_prefabCanvas);
 
         _locationFactory.Init(_locationData);
-        _playerFactory.Init(_playerData, _enemyData, _weaponData);
+        _playerFactory.Init(_playerData, _enemyData, _weaponData, _skillData);
         _factory.Init(_locationFactory, _playerFactory);
 
         _gameManager.Init(_factory, _locQue, _displayController);

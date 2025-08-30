@@ -20,6 +20,11 @@ MonoBehaviour:
     Health: 10
     TypeWeapon: 0
     WeaponDamage: 1
-    Strength: 3
-    Dexterity: 4
+    Strength: 2
+    Dexterity: 1
     Endurance: 3
+    Skills:
+      Strength: 0
+      Dexterity: 0
+      Endurance: 0
+      Skills: 

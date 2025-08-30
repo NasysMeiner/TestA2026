@@ -6,15 +6,17 @@ public class EntityFactory : MonoBehaviour
     private PlayerData _playerData;
     private EnemyData _enemyData;
     private WeaponData _weaponData;
+    private SkillData _skillData;
 
     private Dictionary<TypeEnemy, int> _lastEnemy;
     private int _currentEnemy = 0;
 
-    public void Init(PlayerData playerData, EnemyData enemyData, WeaponData weaponData)
+    public void Init(PlayerData playerData, EnemyData enemyData, WeaponData weaponData, SkillData skillData)
     {
         _playerData = playerData;
         _enemyData = enemyData;
         _weaponData = weaponData;
+        _skillData = skillData;
     }
 
     public GeneratedData CreatePlayer(TypeClass typeClass)
@@ -95,6 +97,9 @@ public class EntityFactory : MonoBehaviour
         parameters.Endurance = Random.Range(min, max + 1);
         parameters.HealthPoint = player.HealthPointPerLevel + parameters.Endurance;
 
+        if (player.Skills.Count != 0)
+            AddSkill(parameters, player.Skills[0]);
+
         return parameters;
     }
 
@@ -110,8 +115,47 @@ public class EntityFactory : MonoBehaviour
         parameters.Strength = enemy.Strength;
         parameters.Dexterity = enemy.Dexterity;
         parameters.Endurance = enemy.Endurance;
+        parameters.Skills = new();
+
+        AddSkill(parameters, enemy.Skills);
 
         return parameters;
+    }
+
+    private void AddSkill(GeneratedParameters parameters, SkillArray skillArrays)
+    {
+        foreach(TypeSkill typeSkill in skillArrays.Skills)
+        {
+            SkillParameters par;
+
+            switch (typeSkill)
+            {
+                case TypeSkill.DaggerDarkness:
+                    par = SearchSkillParameters(TypeSkill.DaggerDarkness);
+                    DaggerSkill skill = new(par.SkillVariation, par.DamageBonus, par.Recharg);
+                    parameters.Skills.Add(skill);
+                break;
+                case TypeSkill.FireBreath:
+                    par = SearchSkillParameters(TypeSkill.FireBreath);
+                    DaggerSkill daggerSkill = new(par.SkillVariation, par.DamageBonus, par.Recharg);
+                    parameters.Skills.Add(daggerSkill);
+                break;
+                case TypeSkill.Shield:
+                    par = SearchSkillParameters(TypeSkill.Shield);
+                    ShieldSkill shieldSkill = new(par.SkillVariation, par.DamageBonus, par.Recharg);
+                    parameters.Skills.Add(shieldSkill);
+                break;
+            }
+        }
+    }
+
+    private SkillParameters SearchSkillParameters(TypeSkill typeSkill)
+    {
+        foreach (SkillParameters skill in _skillData.Skills)
+            if (skill.TypeSkill == typeSkill)
+                return skill;
+
+        return _skillData.Skills[0];
     }
 
     private WeaponParameters SearchWeaponParameters(TypeWeapon typeWeapon)
@@ -130,7 +174,7 @@ public struct GeneratedData
     public Entity Entity;
 }
 
-public struct GeneratedParameters
+public class GeneratedParameters
 {
     public TypeEntity TypeEntity;
     public float HealthPoint;
@@ -138,4 +182,5 @@ public struct GeneratedParameters
     public int Strength;
     public int Dexterity;
     public int Endurance;
+    public List<Skill> Skills = new();
 }

@@ -19,3 +19,12 @@ MonoBehaviour:
     PrefabPlayer: {fileID: 8206001454839965445, guid: 4ee17e6433cd69c4d8f55dd4f1ee0d5e, type: 3}
     HealthPointPerLevel: 20
     TypeWeapon: 1
+    Skills:
+    - Strength: 0
+      Dexterity: 0
+      Endurance: 0
+      Skills: 0300000002000000
+    - Strength: 0
+      Dexterity: 0
+      Endurance: 0
+      Skills: 

@@ -21,4 +21,5 @@ public struct Enemy
     public int Strength;
     public int Dexterity;
     public int Endurance;
+    public SkillArray Skills;
 }

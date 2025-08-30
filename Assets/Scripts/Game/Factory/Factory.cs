@@ -24,9 +24,5 @@ public class Factory : MonoBehaviour
     public GeneratedLocation GenerateLocation(TypeLocation typeLocation)
     {
         return _locationFactory.CreateLocation(typeLocation);
-
-        //generatedLocation.GameLooper = _gameLooperFactory.CreateLoop(typeClass);
-
-        //generatedLocation.LocationManager.Init(generatedPlayer.PlayerUi);//????
     }
 }

@@ -396,6 +396,7 @@ MonoBehaviour:
   _playerData: {fileID: 11400000, guid: 7038f9e0dea94aa4b9390c83022f0cf2, type: 2}
   _enemyData: {fileID: 11400000, guid: 10b33cf6849bad54e805deabf6a8b0a1, type: 2}
   _weaponData: {fileID: 11400000, guid: 10fe725a0915b1a48ae9f2690a1ba22e, type: 2}
+  _skillData: {fileID: 11400000, guid: 4fc15507325a87544a88916b9f65ad74, type: 2}
   _prefabCanvas: {fileID: 5396966736537067182, guid: 6b2605d02dfedca49a4d24d29cadfa58, type: 3}
 --- !u!114 &1090823614
 MonoBehaviour:

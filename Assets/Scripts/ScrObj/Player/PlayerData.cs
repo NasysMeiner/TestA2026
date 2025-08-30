@@ -17,4 +17,14 @@ public struct Player
     public EntityUi PrefabPlayer;
     public int HealthPointPerLevel;
     public TypeWeapon TypeWeapon;
+    public List<SkillArray> Skills;
+}
+
+[Serializable]
+public struct SkillArray
+{
+    public int Strength;
+    public int Dexterity;
+    public int Endurance;
+    public List<TypeSkill> Skills;
 }
