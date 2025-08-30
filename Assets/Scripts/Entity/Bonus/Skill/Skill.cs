@@ -1,4 +1,4 @@
-public abstract class Skill
+public abstract class Skill : IBonus
 {
     private SkillVariation _skillVariation;
     private int _recharge;
@@ -34,5 +34,10 @@ public abstract class Skill
         {
             return true;
         }
+    }
+
+    public void ResetBonus()
+    {
+        _currentRecharg = 0;
     }
 }

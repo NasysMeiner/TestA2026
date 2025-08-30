@@ -7,16 +7,18 @@ public class EntityFactory : MonoBehaviour
     private EnemyData _enemyData;
     private WeaponData _weaponData;
     private SkillData _skillData;
+    private AttributeData _attributeData;
 
     private Dictionary<TypeEnemy, int> _lastEnemy;
     private int _currentEnemy = 0;
 
-    public void Init(PlayerData playerData, EnemyData enemyData, WeaponData weaponData, SkillData skillData)
+    public void Init(PlayerData playerData, EnemyData enemyData, WeaponData weaponData, SkillData skillData, AttributeData attributeData)
     {
         _playerData = playerData;
         _enemyData = enemyData;
         _weaponData = weaponData;
         _skillData = skillData;
+        _attributeData = attributeData;
     }
 
     public GeneratedData CreatePlayer(TypeClass typeClass)
@@ -98,7 +100,10 @@ public class EntityFactory : MonoBehaviour
         parameters.HealthPoint = player.HealthPointPerLevel + parameters.Endurance;
 
         if (player.Skills.Count != 0)
+        {
             AddSkill(parameters, player.Skills[0]);
+            AddAttribute(parameters, player.Skills[0]);
+        }
 
         return parameters;
     }
@@ -118,6 +123,7 @@ public class EntityFactory : MonoBehaviour
         parameters.Skills = new();
 
         AddSkill(parameters, enemy.Skills);
+        AddAttribute(parameters, enemy.Skills);
 
         return parameters;
     }
@@ -149,6 +155,23 @@ public class EntityFactory : MonoBehaviour
         }
     }
 
+    private void AddAttribute(GeneratedParameters parameters, SkillArray skillArrays)
+    {
+        foreach(TypeAttribute attribute in skillArrays.Attributes)
+        {
+            AttributeParameters par;
+
+            switch(attribute)
+            {
+                case TypeAttribute.Reage:
+                    par = SearchAttributeParameters(TypeAttribute.Reage);
+                    RageAttribute rage = new(par.TypeAttribute, par.SkillVariation, par.BuffValue, par.CountBonus, par.ValueAfterBuff);
+                    parameters.Attributes.Add(rage);
+                break;
+            }
+        }
+    }
+
     private SkillParameters SearchSkillParameters(TypeSkill typeSkill)
     {
         foreach (SkillParameters skill in _skillData.Skills)
@@ -156,6 +179,15 @@ public class EntityFactory : MonoBehaviour
                 return skill;
 
         return _skillData.Skills[0];
+    }
+
+    private AttributeParameters SearchAttributeParameters(TypeAttribute typeAttribute)
+    {
+        foreach (AttributeParameters attribute in _attributeData.AttributeParameters)
+            if (attribute.TypeAttribute == typeAttribute)
+                return attribute;
+
+        return _attributeData.AttributeParameters[0];
     }
 
     private WeaponParameters SearchWeaponParameters(TypeWeapon typeWeapon)
@@ -183,4 +215,5 @@ public class GeneratedParameters
     public int Dexterity;
     public int Endurance;
     public List<Skill> Skills = new();
+    public List<Attribute> Attributes = new();
 }

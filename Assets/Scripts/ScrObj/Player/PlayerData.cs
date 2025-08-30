@@ -27,4 +27,5 @@ public struct SkillArray
     public int Dexterity;
     public int Endurance;
     public List<TypeSkill> Skills;
+    public List<TypeAttribute> Attributes;
 }

@@ -4,8 +4,8 @@ public class Entity
 {
     private List<Skill> _damageSkills = new();
     private List<Skill> _deffSkills = new();
-    private List<IAttribute> _buffs = new();
-    private List<IAttribute> _debuffs = new();
+    private List<Attribute> _attackAttribute = new();//DamageBonus out
+    private List<Attribute> _defAttribute = new();//TakeDamageBonus in
 
     public int CurrentLevel { get; private set; }
     public TypeEntity TypeEntity { get; private set; }
@@ -34,6 +34,14 @@ public class Entity
             else
                 _deffSkills.Add(skill);
         }
+
+        foreach(Attribute attribute in parameters.Attributes)
+        {
+            if (attribute.AttrubuteVariation == SkillVariation.Attacking)
+                _attackAttribute.Add(attribute);
+            else
+                _defAttribute.Add(attribute);
+        }
     }
 
     public void CalculateDamage(DamageData data, Entity target)
@@ -46,6 +54,9 @@ public class Entity
 
         foreach (Skill skill in _damageSkills)
             skill.UseSkill(data);
+
+        foreach (Attribute attribute in _attackAttribute)
+            attribute.UseBuff(data);
     }
 
     public void TakeDamage(DamageData data)
@@ -53,17 +64,38 @@ public class Entity
         foreach (Skill skill in _deffSkills)
             skill.UseSkill(data);
 
+        foreach (Attribute attribute in _defAttribute)
+            attribute.UseBuff(data);
+
         int finalDamage = data.Damage + data.DamageWeapon;
 
-        if (finalDamage > 0)
-            HealPoint -= finalDamage;
+        if (finalDamage <= 0)
+            finalDamage = 1;
+
+        HealPoint -= finalDamage;
 
         if (HealPoint <= 0)
             data.IsDead = true;
     }
 
+    public void ResetEntity()
+    {
+        RegenerateHealthPoints();
+
+        ResetBuffsAndSkills(new List<IBonus>(_damageSkills));
+        ResetBuffsAndSkills(new List<IBonus>(_deffSkills));
+        ResetBuffsAndSkills(new List<IBonus>(_attackAttribute));
+        ResetBuffsAndSkills(new List<IBonus>(_defAttribute));
+    }
+
     public void RegenerateHealthPoints()
     {
         HealPoint = MaxHealPoint;
+    }
+
+    private void ResetBuffsAndSkills(List<IBonus> arrayBonus)
+    {
+        foreach (IBonus bonus in arrayBonus)
+            bonus.ResetBonus();
     }
 }

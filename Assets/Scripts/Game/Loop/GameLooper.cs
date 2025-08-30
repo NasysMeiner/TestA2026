@@ -20,7 +20,7 @@ public class GameLooper : MonoBehaviour
         _enemy = enemy;
 
         _countMoves = 0;
-        _player.RegenerateHealthPoints();
+        _player.ResetEntity();
     }
 
     internal void MakeOneLoop()
@@ -32,10 +32,7 @@ public class GameLooper : MonoBehaviour
             return;
         }
 
-        if (_attacker == null)
-            SelectAttacker();
-        else
-            (_attacker, _target) = (_target, _attacker);
+        SelectAttacker();
 
         DamageData damageData = new() { CountMoves = _countMoves, Target = _target };
 
@@ -50,6 +47,12 @@ public class GameLooper : MonoBehaviour
 
     private void SelectAttacker()
     {
+        if (_attacker != null)
+        {
+            (_attacker, _target) = (_target, _attacker);
+            return;
+        }
+
         if (_player.Dexterity >= _enemy.Dexterity)
         {
             _attacker = _player;
