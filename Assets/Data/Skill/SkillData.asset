@@ -18,13 +18,22 @@ MonoBehaviour:
     SkillVariation: 0
     Recharg: 3
     DamageBonus: 3
+    TypeAttribute: 0
   - IsMainAttack: 0
     TypeSkill: 2
     SkillVariation: 0
     Recharg: 0
     DamageBonus: 1
+    TypeAttribute: 0
   - IsMainAttack: 0
     TypeSkill: 3
     SkillVariation: 1
     Recharg: 0
     DamageBonus: -3
+    TypeAttribute: 0
+  - IsMainAttack: 0
+    TypeSkill: 4
+    SkillVariation: 0
+    Recharg: 0
+    DamageBonus: 0
+    TypeAttribute: 2

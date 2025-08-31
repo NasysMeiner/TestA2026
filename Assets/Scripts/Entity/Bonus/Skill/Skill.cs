@@ -5,14 +5,28 @@ public abstract class Skill : IBonus
     private int _currentRecharg;
 
     protected int _damageBonus;
+    protected Attribute _debuff;
 
     public SkillVariation SkillVariation => _skillVariation;
 
-    public Skill(SkillVariation skillVariation, int damageBonus, int recharge)
+    public Skill(Skill skill)
     {
-        _skillVariation = skillVariation;
-        _recharge = recharge;
-        _damageBonus = damageBonus;
+        _skillVariation = skill._skillVariation;
+        _recharge = skill._recharge;
+        _damageBonus = skill._damageBonus;
+
+        _debuff = skill._debuff;
+
+        _currentRecharg = 0;
+    }
+
+    public Skill(SkillParameters skillParameters)
+    {
+        _skillVariation = skillParameters.SkillVariation;
+        _recharge = skillParameters.Recharg;
+        _damageBonus = skillParameters.DamageBonus;
+
+        _debuff = skillParameters.DebuffTarget;
 
         _currentRecharg = 0;
     }

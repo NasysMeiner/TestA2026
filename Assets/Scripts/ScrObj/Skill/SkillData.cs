@@ -16,4 +16,6 @@ public struct SkillParameters
     public SkillVariation SkillVariation;
     public int Recharg;
     public int DamageBonus;
+    public TypeAttribute TypeAttribute;
+    public Attribute DebuffTarget;
 }

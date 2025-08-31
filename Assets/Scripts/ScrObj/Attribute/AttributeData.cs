@@ -16,4 +16,5 @@ public struct AttributeParameters
     public int BuffValue;
     public int CountBonus;
     public int ValueAfterBuff;
+    public int IncreasePerMove;
 }

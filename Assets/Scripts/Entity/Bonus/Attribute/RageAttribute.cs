@@ -1,6 +1,10 @@
 public class RageAttribute : Attribute
 {
-    public RageAttribute(TypeAttribute typeAttribute, SkillVariation attrubuteVariation, int buffValue, int countMoves, int valueAfterBuff) : base(typeAttribute, attrubuteVariation, buffValue, countMoves, valueAfterBuff)
+    public RageAttribute(Attribute attribute) : base(attribute)
+    {
+    }
+
+    public RageAttribute(AttributeParameters parameters) : base(parameters)
     {
     }
 

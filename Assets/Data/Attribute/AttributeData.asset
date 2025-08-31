@@ -13,8 +13,15 @@ MonoBehaviour:
   m_Name: AttributeData
   m_EditorClassIdentifier: 
   AttributeParameters:
-  - TypeAttribute: 0
+  - TypeAttribute: 1
     SkillVariation: 0
     BuffValue: 2
     CountBonus: 3
     ValueAfterBuff: -1
+    IncreasePerMove: 0
+  - TypeAttribute: 2
+    SkillVariation: 1
+    BuffValue: 1
+    CountBonus: 9999
+    ValueAfterBuff: 0
+    IncreasePerMove: 1

@@ -7,4 +7,5 @@ public enum TypeSkill
     FireBreath,
     DaggerDarkness,
     Shield,
+    PoisonDagger,
 }

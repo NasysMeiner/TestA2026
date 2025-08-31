@@ -1,6 +1,6 @@
 public class StoneSkinSkill : Skill
 {
-    public StoneSkinSkill(SkillVariation skillVariation, int damageBonus, int recharge) : base(skillVariation, damageBonus, recharge)
+    public StoneSkinSkill(SkillParameters skillParameters) : base(skillParameters)
     {
     }
 

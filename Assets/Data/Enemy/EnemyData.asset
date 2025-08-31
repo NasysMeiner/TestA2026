@@ -17,11 +17,11 @@ MonoBehaviour:
   Enemies:
   - TypeEnemy: 3
     PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
-    Health: 10
+    Health: 100
     TypeWeapon: 0
-    WeaponDamage: 1
-    Strength: 2
-    Dexterity: 1
+    WeaponDamage: 0
+    Strength: 0
+    Dexterity: 2
     Endurance: 3
     Skills:
       Strength: 0

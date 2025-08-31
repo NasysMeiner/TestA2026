@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+
 public abstract class Attribute : IBonus
 {
     private TypeAttribute _typeAttribute;
@@ -11,13 +13,24 @@ public abstract class Attribute : IBonus
     public SkillVariation AttrubuteVariation => _attrubuteVariation;
     public TypeAttribute TypeAttribute => _typeAttribute;
 
-    public Attribute(TypeAttribute typeAttribute, SkillVariation attrubuteVariation, int buffValue, int countMoves, int valueAfterBuff)
+    public Attribute (Attribute attribute)
     {
-        _typeAttribute = typeAttribute;
-        _attrubuteVariation = attrubuteVariation;
-        _buffValue = buffValue;
-        _countMoves = countMoves;
-        _valueAfterBuff = valueAfterBuff;
+        _typeAttribute = attribute._typeAttribute;
+        _attrubuteVariation = attribute._attrubuteVariation;
+        _buffValue = attribute._buffValue;
+        _countMoves = attribute._countMoves;
+        _valueAfterBuff = attribute._valueAfterBuff;
+
+        ResetBonus();
+    }
+
+    public Attribute(AttributeParameters parameters)
+    {
+        _typeAttribute = parameters.TypeAttribute;
+        _attrubuteVariation = parameters.SkillVariation;
+        _buffValue = parameters.BuffValue;
+        _countMoves = parameters.CountBonus;
+        _valueAfterBuff = parameters.ValueAfterBuff;
 
         ResetBonus();
     }
@@ -36,7 +49,7 @@ public abstract class Attribute : IBonus
         return false;
     }
 
-    public void ResetBonus()
+    public virtual void ResetBonus()
     {
         _currentMoves = _countMoves;
     }

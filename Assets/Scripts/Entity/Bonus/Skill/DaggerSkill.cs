@@ -1,6 +1,6 @@
 public class DaggerSkill : Skill
 {
-    public DaggerSkill(SkillVariation skillVariation, int damageBonus, int recharge) : base(skillVariation, damageBonus, recharge) { }
+    public DaggerSkill(SkillParameters skillParameters) : base(skillParameters) { }
 
     public override void UseSkill(DamageData damageData)
     {

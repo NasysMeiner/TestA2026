@@ -7,6 +7,8 @@ public class Entity
     private List<Attribute> _attackAttribute = new();//DamageBonus out
     private List<Attribute> _defAttribute = new();//TakeDamageBonus in
 
+    private Dictionary<TypeAttribute, int> _countAttribute = new();
+
     public int CurrentLevel { get; private set; }
     public TypeEntity TypeEntity { get; private set; }
     public Weapon Weapon { get; private set; }
@@ -61,6 +63,8 @@ public class Entity
 
     public void TakeDamage(DamageData data)
     {
+        ApplyDebuff(data.DebuffTarget);
+
         foreach (Skill skill in _deffSkills)
             skill.UseSkill(data);
 
@@ -69,8 +73,8 @@ public class Entity
 
         int finalDamage = data.Damage + data.DamageWeapon;
 
-        if (finalDamage <= 0)
-            finalDamage = 1;
+        if (finalDamage < 0)
+            finalDamage = 0;
 
         HealPoint -= finalDamage;
 
@@ -97,5 +101,17 @@ public class Entity
     {
         foreach (IBonus bonus in arrayBonus)
             bonus.ResetBonus();
+    }
+
+    private void ApplyDebuff(Attribute debuff)
+    {
+        if (debuff == null)
+            return;
+
+        if(!_countAttribute.ContainsKey(debuff.TypeAttribute))
+        {
+            _defAttribute.Add(debuff);
+            _countAttribute.Add(debuff.TypeAttribute, 1);
+        }
     }
 }

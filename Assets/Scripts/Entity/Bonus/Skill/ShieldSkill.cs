@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class ShieldSkill : Skill
 {
-    public ShieldSkill(SkillVariation skillVariation, int damageBonus, int recharge) : base(skillVariation, damageBonus, recharge)
+    public ShieldSkill(SkillParameters skillParameters) : base(skillParameters)
     {
     }
 

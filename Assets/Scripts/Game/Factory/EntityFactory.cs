@@ -132,26 +132,28 @@ public class EntityFactory : MonoBehaviour
     {
         foreach(TypeSkill typeSkill in skillArrays.Skills)
         {
-            SkillParameters par;
+            SkillParameters par = SearchSkillParameters(typeSkill);
+            Skill newSkill = null;
 
             switch (typeSkill)
             {
                 case TypeSkill.DaggerDarkness:
-                    par = SearchSkillParameters(TypeSkill.DaggerDarkness);
-                    DaggerSkill skill = new(par.SkillVariation, par.DamageBonus, par.Recharg);
-                    parameters.Skills.Add(skill);
+                    newSkill = new DaggerSkill(par);
                 break;
                 case TypeSkill.FireBreath:
-                    par = SearchSkillParameters(TypeSkill.FireBreath);
-                    DaggerSkill daggerSkill = new(par.SkillVariation, par.DamageBonus, par.Recharg);
-                    parameters.Skills.Add(daggerSkill);
+                    newSkill = new DaggerSkill(par);
                 break;
                 case TypeSkill.Shield:
-                    par = SearchSkillParameters(TypeSkill.Shield);
-                    ShieldSkill shieldSkill = new(par.SkillVariation, par.DamageBonus, par.Recharg);
-                    parameters.Skills.Add(shieldSkill);
+                    newSkill = new ShieldSkill(par);
+                break;
+                case TypeSkill.PoisonDagger:
+                    par.DebuffTarget = CreateAttribute(par.TypeAttribute);
+                    newSkill = new PoisonDagger(par);
                 break;
             }
+
+            if (newSkill != null)
+                parameters.Skills.Add(newSkill);
         }
     }
 
@@ -159,16 +161,21 @@ public class EntityFactory : MonoBehaviour
     {
         foreach(TypeAttribute attribute in skillArrays.Attributes)
         {
-            AttributeParameters par;
+            AttributeParameters par = SearchAttributeParameters(attribute);
+            Attribute newAttribute = null;
 
-            switch(attribute)
+            switch (attribute)
             {
                 case TypeAttribute.Reage:
-                    par = SearchAttributeParameters(TypeAttribute.Reage);
-                    RageAttribute rage = new(par.TypeAttribute, par.SkillVariation, par.BuffValue, par.CountBonus, par.ValueAfterBuff);
-                    parameters.Attributes.Add(rage);
+                    newAttribute = new RageAttribute(par);
+                break;
+                case TypeAttribute.Poison:
+                    newAttribute = new PoisonAttribute(par);
                 break;
             }
+
+            if(newAttribute != null)
+                parameters.Attributes.Add(newAttribute);
         }
     }
 
@@ -188,6 +195,24 @@ public class EntityFactory : MonoBehaviour
                 return attribute;
 
         return _attributeData.AttributeParameters[0];
+    }
+
+    private Attribute CreateAttribute(TypeAttribute typeAttribute)
+    {
+        AttributeParameters parameters = SearchAttributeParameters(typeAttribute);
+        Attribute newAttribute = null;
+
+        switch (typeAttribute)
+        {
+            case TypeAttribute.Reage:
+                newAttribute = new RageAttribute(parameters);
+                break;
+            case TypeAttribute.Poison:
+                newAttribute = new PoisonAttribute(parameters);
+                break;
+        }
+
+        return newAttribute;
     }
 
     private WeaponParameters SearchWeaponParameters(TypeWeapon typeWeapon)
