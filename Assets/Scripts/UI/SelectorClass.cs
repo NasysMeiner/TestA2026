@@ -4,8 +4,7 @@ using UnityEngine;
 public class SelectorClass : MonoBehaviour
 {
     [SerializeField] private DisplayController _displayController;
-
-    private List<SelectorButtonClass> _buttons = new();
+    [SerializeField] private List<SelectorButtonClass> _buttons = new();
 
     private SelectorButtonClass _currentButtonClass = null;
 
@@ -27,10 +26,21 @@ public class SelectorClass : MonoBehaviour
 
     public void GenerateGame()
     {
-        if(!_isCreate)
+        if (!_isCreate && _currentButtonClass != null)
         {
             _isCreate = true;
-            _displayController.CreateSession(TypeClass.Warrior);
+            _displayController.CreateSession(_currentButtonClass.TypeClass);
+            gameObject.SetActive(false);
+            _currentButtonClass = null;
+        }
+    }
+
+    public void LevelUp(SelectorButtonClass buttonClass)
+    {
+        if(!_isCreate && _currentButtonClass != null)
+        {
+            _isCreate = true;
+            //NextLevel
             gameObject.SetActive(false);
         }
     }

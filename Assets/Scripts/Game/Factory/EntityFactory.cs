@@ -139,17 +139,20 @@ public class EntityFactory : MonoBehaviour
             {
                 case TypeSkill.DaggerDarkness:
                     newSkill = new DaggerSkill(par);
-                break;
+                    break;
                 case TypeSkill.FireBreath:
                     newSkill = new DaggerSkill(par);
-                break;
+                    break;
                 case TypeSkill.Shield:
                     newSkill = new ShieldSkill(par);
-                break;
+                    break;
                 case TypeSkill.PoisonDagger:
                     par.DebuffTarget = CreateAttribute(par.TypeAttribute);
-                    newSkill = new PoisonDagger(par);
-                break;
+                    newSkill = new PoisonDaggerSkill(par);
+                    break;
+                case TypeSkill.StoneSkin:
+                    newSkill = new StoneSkinSkill(par);
+                    break;
             }
 
             if (newSkill != null)
@@ -168,10 +171,13 @@ public class EntityFactory : MonoBehaviour
             {
                 case TypeAttribute.Reage:
                     newAttribute = new RageAttribute(par);
-                break;
+                    break;
                 case TypeAttribute.Poison:
                     newAttribute = new PoisonAttribute(par);
-                break;
+                    break;
+                case TypeAttribute.ImpulseToAction:
+                    newAttribute = new RageAttribute(par);
+                    break;
             }
 
             if(newAttribute != null)
@@ -204,6 +210,9 @@ public class EntityFactory : MonoBehaviour
 
         switch (typeAttribute)
         {
+            case TypeAttribute.ImpulseToAction:
+                newAttribute = new RageAttribute(parameters);
+                break;
             case TypeAttribute.Reage:
                 newAttribute = new RageAttribute(parameters);
                 break;

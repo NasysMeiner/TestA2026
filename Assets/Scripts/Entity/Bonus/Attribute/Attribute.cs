@@ -5,6 +5,7 @@ public abstract class Attribute : IBonus
     private TypeAttribute _typeAttribute;
     private SkillVariation _attrubuteVariation;
     private int _currentMoves;
+    private OverlayType _overlayType;
 
     protected int _buffValue;
     protected int _countMoves;
@@ -12,6 +13,7 @@ public abstract class Attribute : IBonus
 
     public SkillVariation AttrubuteVariation => _attrubuteVariation;
     public TypeAttribute TypeAttribute => _typeAttribute;
+    public OverlayType OverlayType => _overlayType;
 
     public Attribute (Attribute attribute)
     {
@@ -20,6 +22,7 @@ public abstract class Attribute : IBonus
         _buffValue = attribute._buffValue;
         _countMoves = attribute._countMoves;
         _valueAfterBuff = attribute._valueAfterBuff;
+        _overlayType = attribute._overlayType;
 
         ResetBonus();
     }
@@ -31,11 +34,17 @@ public abstract class Attribute : IBonus
         _buffValue = parameters.BuffValue;
         _countMoves = parameters.CountBonus;
         _valueAfterBuff = parameters.ValueAfterBuff;
+        _overlayType = OverlayType.Outside;
 
         ResetBonus();
     }
 
     public abstract void UseBuff(DamageData damageData);
+
+    public void SetBaseType()
+    {
+        _overlayType = OverlayType.Base;
+    }
 
     public bool CheckBuffDuration()
     {

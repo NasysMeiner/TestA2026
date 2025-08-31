@@ -8,4 +8,5 @@ public enum TypeSkill
     DaggerDarkness,
     Shield,
     PoisonDagger,
+    StoneSkin,
 }

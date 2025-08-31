@@ -25,3 +25,9 @@ MonoBehaviour:
     CountBonus: 9999
     ValueAfterBuff: 0
     IncreasePerMove: 1
+  - TypeAttribute: 3
+    SkillVariation: 0
+    BuffValue: 3
+    CountBonus: 1
+    ValueAfterBuff: 0
+    IncreasePerMove: 0

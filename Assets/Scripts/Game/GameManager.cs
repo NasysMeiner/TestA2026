@@ -68,6 +68,9 @@ public class GameManager : MonoBehaviour
         _gameLooper.EndOneLoop += OnEndOneLoop;
         _gameLooper.Death += OnDeath;
 
+        if (_locationManager.TypeLocation == TypeLocation.Shop)
+            _displayController.EnableLevelUpWindow();
+
         Debug.Log("TypeLocation: " + _locationManager.TypeLocation);
     }
 

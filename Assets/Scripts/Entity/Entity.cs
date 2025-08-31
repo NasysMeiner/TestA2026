@@ -31,6 +31,8 @@ public class Entity
 
         foreach(Skill skill in parameters.Skills)
         {
+            skill.SetBaseType();
+
             if (skill.SkillVariation == SkillVariation.Attacking)
                 _damageSkills.Add(skill);
             else
@@ -39,6 +41,8 @@ public class Entity
 
         foreach(Attribute attribute in parameters.Attributes)
         {
+            attribute.SetBaseType();
+
             if (attribute.AttrubuteVariation == SkillVariation.Attacking)
                 _attackAttribute.Add(attribute);
             else
@@ -86,6 +90,9 @@ public class Entity
     {
         RegenerateHealthPoints();
 
+        _attackAttribute = ClearTimeBuffsAndDebuffs(_attackAttribute);
+        _defAttribute = ClearTimeBuffsAndDebuffs(_defAttribute);
+
         ResetBuffsAndSkills(new List<IBonus>(_damageSkills));
         ResetBuffsAndSkills(new List<IBonus>(_deffSkills));
         ResetBuffsAndSkills(new List<IBonus>(_attackAttribute));
@@ -95,6 +102,17 @@ public class Entity
     public void RegenerateHealthPoints()
     {
         HealPoint = MaxHealPoint;
+    }
+
+    private List<Attribute> ClearTimeBuffsAndDebuffs(List<Attribute> attributes)
+    {
+        List<Attribute> cleraListAttribute = new();
+
+        for (int i = 0; i < attributes.Count; i++)
+            if (attributes[i].OverlayType != OverlayType.Outside)
+                cleraListAttribute.Add(attributes[i]);
+
+        return cleraListAttribute;
     }
 
     private void ResetBuffsAndSkills(List<IBonus> arrayBonus)

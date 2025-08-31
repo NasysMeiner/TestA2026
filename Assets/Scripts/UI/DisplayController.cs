@@ -5,6 +5,7 @@ public class DisplayController : MonoBehaviour
     [SerializeField] private GameObject _deathPlayerWindow;
     [SerializeField] private GameObject _nextLocationWindow;
     [SerializeField] private SelectorClass _createSessionWindow;
+    [SerializeField] private SelectorClass _levelUpWindow;
 
     [SerializeField] private StatsView _statsViewPlayer;
     [SerializeField] private StatsView _statsViewEnemy;
@@ -31,6 +32,11 @@ public class DisplayController : MonoBehaviour
             _gameManager.CreateLevel();
             _nextLocationWindow.SetActive(false);
         }
+    }
+
+    public void EnableLevelUpWindow()
+    {
+        _levelUpWindow.gameObject.SetActive(true);
     }
 
     public void ActivateDeathPlayerWindow()

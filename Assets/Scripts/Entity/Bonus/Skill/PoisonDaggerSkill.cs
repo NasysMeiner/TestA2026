@@ -1,10 +1,10 @@
-public class PoisonDagger : Skill
+public class PoisonDaggerSkill : Skill
 {
-    public PoisonDagger(PoisonDagger skill) : base(skill)
+    public PoisonDaggerSkill(PoisonDaggerSkill skill) : base(skill)
     {
     }
 
-    public PoisonDagger(SkillParameters skillParameters) : base(skillParameters)
+    public PoisonDaggerSkill(SkillParameters skillParameters) : base(skillParameters)
     {
     }
 

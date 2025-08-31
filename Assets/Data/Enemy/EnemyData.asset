@@ -17,10 +17,24 @@ MonoBehaviour:
   Enemies:
   - TypeEnemy: 3
     PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
-    Health: 100
+    Health: 20
     TypeWeapon: 0
-    WeaponDamage: 0
-    Strength: 0
+    WeaponDamage: 2
+    Strength: 1
+    Dexterity: 2
+    Endurance: 3
+    Skills:
+      Strength: 0
+      Dexterity: 0
+      Endurance: 0
+      Skills: 05000000
+      Attributes: 
+  - TypeEnemy: 1
+    PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
+    Health: 50
+    TypeWeapon: 0
+    WeaponDamage: 1
+    Strength: 2
     Dexterity: 2
     Endurance: 3
     Skills:

@@ -12,16 +12,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3ce67d0c003934fb6ff64b50a51b25, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  MinValue: 0
-  MaxValue: 0
+  MinValue: 1
+  MaxValue: 3
   Players:
   - TypeClass: 0
     PrefabPlayer: {fileID: 8206001454839965445, guid: 4ee17e6433cd69c4d8f55dd4f1ee0d5e, type: 3}
     HealthPointPerLevel: 100
-    TypeWeapon: 0
+    TypeWeapon: 1
     Skills:
     - Strength: 0
       Dexterity: 0
       Endurance: 0
+      Skills: 
+      Attributes: 03000000
+    - Strength: 0
+      Dexterity: 0
+      Endurance: 0
+      Skills: 03000000
+      Attributes: 03000000
+    - Strength: 1
+      Dexterity: 0
+      Endurance: 0
+      Skills: 
+      Attributes: 03000000
+  - TypeClass: 1
+    PrefabPlayer: {fileID: 8206001454839965445, guid: 4ee17e6433cd69c4d8f55dd4f1ee0d5e, type: 3}
+    HealthPointPerLevel: 100
+    TypeWeapon: 3
+    Skills:
+    - Strength: 0
+      Dexterity: 0
+      Endurance: 0
+      Skills: 02000000
+      Attributes: 
+    - Strength: 0
+      Dexterity: 1
+      Endurance: 0
+      Skills: 
+      Attributes: 
+    - Strength: 0
+      Dexterity: 0
+      Endurance: 0
       Skills: 04000000
+      Attributes: 
+  - TypeClass: 2
+    PrefabPlayer: {fileID: 8206001454839965445, guid: 4ee17e6433cd69c4d8f55dd4f1ee0d5e, type: 3}
+    HealthPointPerLevel: 100
+    TypeWeapon: 2
+    Skills:
+    - Strength: 0
+      Dexterity: 0
+      Endurance: 0
+      Skills: 
+      Attributes: 01000000
+    - Strength: 0
+      Dexterity: 0
+      Endurance: 0
+      Skills: 
+      Attributes: 
+    - Strength: 0
+      Dexterity: 0
+      Endurance: 1
+      Skills: 
       Attributes: 
