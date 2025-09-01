@@ -19,4 +19,10 @@ MonoBehaviour:
     PrefabLocation: {fileID: 7725845467160178935, guid: c2093e53b16509d4e8abf52d9a248fe0, type: 3}
   - TypeLocation: 3
     PrefabLocation: {fileID: 3171643799548003633, guid: f2c998a1e747b3d45bb3cb341eef828d, type: 3}
+  - TypeLocation: 6
+    PrefabLocation: {fileID: 8194497601929882572, guid: 12e39b8009a710841851e83dfbc2e654, type: 3}
+  - TypeLocation: 4
+    PrefabLocation: {fileID: 696751356188440543, guid: 721bc42004adbd94b80a16cc9cee47d5, type: 3}
+  - TypeLocation: 5
+    PrefabLocation: {fileID: 6862318182591746116, guid: 6ba5c5e5dafbda94a934ffed3edeafe3, type: 3}
   PrefabGameLooper: {fileID: 847606483309613222, guid: c5fd510ad307a694da2816215247afb5, type: 3}

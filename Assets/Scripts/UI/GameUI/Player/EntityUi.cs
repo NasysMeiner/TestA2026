@@ -11,12 +11,20 @@ public class EntityUi : MonoBehaviour
     private Animator _animator;
 
     private bool _isFinishAttack;
+    private string _nameEntity;
+
+    public string NameEntity => _nameEntity;
 
     public event UnityAction AtPoint;
 
     private void OnEnable()
     {
         _animator = GetComponent<Animator>();
+    }
+
+    public void SetNameEntity(string name)
+    {
+        _nameEntity = name;
     }
 
     public void SetPoint(Vector3 endPoint)

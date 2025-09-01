@@ -10,8 +10,9 @@ public class ShieldSkill : Skill
             return;
 
         if (damageData.Attacker.Strength < damageData.Target.Strength)
+        {
             damageData.Damage += _damageBonus;
-
-        base.UseSkill(damageData);
+            base.UseSkill(damageData);
+        }
     }
 }

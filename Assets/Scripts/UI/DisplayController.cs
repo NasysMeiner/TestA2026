@@ -4,9 +4,11 @@ public class DisplayController : MonoBehaviour
 {
     [SerializeField] private GameObject _deathPlayerWindow;
     [SerializeField] private GameObject _nextLocationWindow;
+    [SerializeField] private GameObject _endWindow;
     [SerializeField] private SelectorClass _shopWindow;
     [SerializeField] private SelectorClass _createSessionWindow;
 
+    [SerializeField] private StatsView _statsEndGame;
     [SerializeField] private StatsView _statsViewPlayer;
     [SerializeField] private StatsView _statsViewEnemy;
 
@@ -22,6 +24,11 @@ public class DisplayController : MonoBehaviour
         _gameManager.EndLocation();
     }
 
+    public void EnableStartWindow()
+    {
+        _createSessionWindow.gameObject.SetActive(true);
+    }
+
     public void CreateSession(TypeClass typeClass)
     {
         _gameManager.GenerateSession(typeClass);
@@ -35,12 +42,15 @@ public class DisplayController : MonoBehaviour
     public void LevelUpPlayer(TypeClass typeClass)
     {
         _gameManager.LevelUpPlayer(typeClass);
-        CreateNextLevel();
+        EndLocation();
     }
 
-    public void EnableLevelUpWindow()
+    public void EnableLevelUpWindow(bool isMaxLevel)
     {
-        _shopWindow.gameObject.SetActive(true);
+        if (!isMaxLevel)
+            _shopWindow.gameObject.SetActive(true);
+        else
+            EndLocation();
     }
 
     public void ActivateDeathPlayerWindow()
@@ -59,15 +69,25 @@ public class DisplayController : MonoBehaviour
         _createSessionWindow.gameObject.SetActive(true);
     }
 
-    public void SetStats(Entity player, Entity enemy)
+    public void EnableEndWindow()
+    {
+        _endWindow.SetActive(true);
+    }
+
+    public void SetStats(Entity player, Entity enemy, EntityUi entituUi)
     {
         if (player != null)
-            _statsViewPlayer.SetStats(player);
+            _statsEndGame.SetStats(player, player.TypeClass.ToString());
+        else
+            _statsViewPlayer.SetStats();
+
+        if (player != null)
+            _statsViewPlayer.SetStats(player, player.TypeClass.ToString());
         else
             _statsViewPlayer.SetStats();
 
         if (enemy != null)
-            _statsViewEnemy.SetStats(enemy);
+            _statsViewEnemy.SetStats(enemy, entituUi.NameEntity);
         else
             _statsViewEnemy.SetStats();
     }

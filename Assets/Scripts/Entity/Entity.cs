@@ -14,6 +14,7 @@ public class Entity
 
     public LevelData LevelData { get; private set; }
     public TypeEntity TypeEntity { get; private set; }
+    public TypeClass TypeClass { get; private set; }
     public Weapon Weapon { get; private set; }
     public float HealPoint { get; private set; }
     public float MaxHealPoint { get; private set; }
@@ -24,6 +25,7 @@ public class Entity
     public Entity(GeneratedParameters parameters)
     {
         LevelData = new();
+        TypeClass = parameters.TypeClass;
         AddParameters(parameters);
     }
 

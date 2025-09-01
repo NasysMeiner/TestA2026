@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private int _maxLevel = 3;
+
     private Factory _factory;
 
     private List<TypeLocation> _locations;
@@ -55,19 +57,25 @@ public class GameManager : MonoBehaviour
         _gameLooper.Init(_currentSession.Player.Entity, _currentSession.Enemy.Entity);
         _locationManager.Init(_currentSession.Player.EntityUi, _currentSession.Enemy.EntityUi);
 
-        _displayController.SetStats(_currentSession.Player.Entity, _currentSession.Enemy.Entity);
+        _displayController.SetStats(_currentSession.Player.Entity, _currentSession.Enemy.Entity, _currentSession.Enemy.EntityUi);
 
-        _locationManager.StartLocation();
+        if (_locationManager.TypeLocation == TypeLocation.Shop)
+            _displayController.EnableLevelUpWindow(_currentSession.Player.Entity.LevelData.CurrentLevel >= _maxLevel);
+
+        if (!isEndLoocation)
+            _locationManager.StartLocation();
     }
 
     public void LevelUpPlayer(TypeClass typeClass)
     {
         _factory.LevelUpEntity(_currentSession.Player.Entity, typeClass);
+        isEndLoocation = true;
     }
 
     public void EndLocation()
     {
         _locationManager.EndLocation();
+        isEndLoocation = true;
     }
 
     private void CreateLocation(TypeLocation typeLocation)
@@ -80,9 +88,6 @@ public class GameManager : MonoBehaviour
         _gameLooper.EndOneLoop += OnEndOneLoop;
         _gameLooper.Death += OnDeath;
 
-        if (_locationManager.TypeLocation == TypeLocation.Shop)
-            _displayController.EnableLevelUpWindow();
-
         Debug.Log("TypeLocation: " + _locationManager.TypeLocation);
     }
 
@@ -90,7 +95,7 @@ public class GameManager : MonoBehaviour
     {
         GeneratedData enemy;
 
-        if (_locationManager.TypeLocation != TypeLocation.Shop)
+        if (_locationManager.TypeLocation != TypeLocation.Shop && _locationManager.TypeLocation != TypeLocation.LocationEnd)
             enemy = _factory.GenerateEntity();
         else
             enemy = new();
@@ -101,16 +106,23 @@ public class GameManager : MonoBehaviour
     private void OnEndAnimation()
     {
         Debug.Log("startloop...");
-        if (!isEndLoocation)
+        if (_locationManager.TypeLocation == TypeLocation.LocationEnd)
+        {
+            _displayController.EnableEndWindow();
+
+            return;
+        }
+
+        if (!isEndLoocation && _locationManager.TypeLocation != TypeLocation.Shop)
             _gameLooper.MakeOneLoop();
-        else
+        else if (isEndLoocation)
             CreateLevel();
     }
 
     private void OnEndOneLoop(DamageData damageData)
     {
         Debug.Log("start anim...");
-        _displayController.SetStats(_currentSession.Player.Entity, _currentSession.Enemy.Entity);
+        _displayController.SetStats(_currentSession.Player.Entity, _currentSession.Enemy.Entity, _currentSession.Enemy.EntityUi);
 
         _locationManager.StartAnimationAttack(damageData);
     }
@@ -118,7 +130,9 @@ public class GameManager : MonoBehaviour
     private void OnDeath(Entity deathEntity)
     {
         if (deathEntity.TypeEntity == TypeEntity.Player)
+        {
             _displayController.ActivateDeathPlayerWindow();
+        }
         else
         {
             isEndLoocation = true;

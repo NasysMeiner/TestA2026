@@ -1,5 +1,6 @@
 public enum TypeEnemy
 {
+    Goblin,
     Skeleton,
     Slime,
     Ghost,

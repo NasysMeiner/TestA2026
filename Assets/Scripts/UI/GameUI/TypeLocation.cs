@@ -5,4 +5,6 @@ public enum TypeLocation
     Location1,
     Location2,
     Location3,
+    Location4,
+    LocationEnd,
 }

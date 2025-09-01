@@ -15,7 +15,7 @@ MonoBehaviour:
   IsRandom: 0
   IsUnique: 0
   Enemies:
-  - TypeEnemy: 3
+  - TypeEnemy: 0
     PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
     Health: 5
     TypeWeapon: 0
@@ -31,15 +31,71 @@ MonoBehaviour:
       Attributes: 
   - TypeEnemy: 1
     PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
-    Health: 20
+    Health: 10
     TypeWeapon: 0
-    WeaponDamage: 1
+    WeaponDamage: 2
     Strength: 2
     Dexterity: 2
-    Endurance: 3
+    Endurance: 1
     Skills:
       Strength: 0
       Dexterity: 0
       Endurance: 0
       Skills: 
+      Attributes: 05000000
+  - TypeEnemy: 2
+    PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
+    Health: 8
+    TypeWeapon: 0
+    WeaponDamage: 1
+    Strength: 3
+    Dexterity: 1
+    Endurance: 2
+    Skills:
+      Strength: 0
+      Dexterity: 0
+      Endurance: 0
+      Skills: 
+      Attributes: 04000000
+  - TypeEnemy: 3
+    PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
+    Health: 6
+    TypeWeapon: 0
+    WeaponDamage: 3
+    Strength: 1
+    Dexterity: 3
+    Endurance: 1
+    Skills:
+      Strength: 0
+      Dexterity: 0
+      Endurance: 0
+      Skills: 02000000
+      Attributes: 
+  - TypeEnemy: 4
+    PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
+    Health: 10
+    TypeWeapon: 0
+    WeaponDamage: 1
+    Strength: 3
+    Dexterity: 1
+    Endurance: 3
+    Skills:
+      Strength: 0
+      Dexterity: 0
+      Endurance: 0
+      Skills: 05000000
+      Attributes: 
+  - TypeEnemy: 4
+    PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
+    Health: 20
+    TypeWeapon: 0
+    WeaponDamage: 4
+    Strength: 3
+    Dexterity: 3
+    Endurance: 3
+    Skills:
+      Strength: 0
+      Dexterity: 0
+      Endurance: 0
+      Skills: 01000000
       Attributes: 

@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class StatsView : MonoBehaviour
 {
@@ -11,17 +10,25 @@ public class StatsView : MonoBehaviour
     [SerializeField] private TMP_Text _dexterity;
     [SerializeField] private TMP_Text _endurance;
 
+    [SerializeField] private TMP_Text _warrior;
+    [SerializeField] private TMP_Text _barbarian;
+    [SerializeField] private TMP_Text _robber;
+
     [SerializeField] private TMP_Text _weapon;
     [SerializeField] private TMP_Text _weaponDamage;
 
-    public void SetStats(Entity entity)
+    public void SetStats(Entity entity, string name)
     {
-        _name.text = entity.TypeEntity.ToString();
+        _name.text = name;
 
         _health.text = entity.HealPoint.ToString();
         _strength.text = entity.Strength.ToString();
         _dexterity.text = entity.Dexterity.ToString();
         _endurance.text = entity.Endurance.ToString();
+
+        _warrior.text = entity.LevelData.WarriorLevel.ToString();
+        _barbarian.text = entity.LevelData.BararianLevel.ToString();
+        _robber.text = entity.LevelData.RobberLevel.ToString();
 
         _weapon.text = entity.Weapon.TypeWeapon.ToString();
         _weaponDamage.text = entity.Weapon.Damage.ToString();

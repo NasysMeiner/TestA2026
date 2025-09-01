@@ -14,7 +14,6 @@ public class LocationManager : MonoBehaviour
 
     private int _countReady;
     private int _countReadyAnimEndLoc = 1;
-    private int _countReadyAnimStartLoc = 2;
     private int _countReadyAnimAttack = 3;
     private int _isReady = 0;
 
@@ -54,13 +53,19 @@ public class LocationManager : MonoBehaviour
 
     public void StartLocation()
     {
-        _countReady = _countReadyAnimStartLoc;
+        _countReady = 0;
 
         if (_playerUi != null)
+        {
             _playerUi.SetPoint(_playerPoint.transform.position);
+            _countReady++;
+        }
 
         if (_enemyUi != null)
+        {
             _enemyUi.SetPoint(_enemyPoint.transform.position);
+            _countReady++;
+        }
 
         Debug.Log("StartLocation anim...");
     }
@@ -70,7 +75,10 @@ public class LocationManager : MonoBehaviour
         _countReady = _countReadyAnimEndLoc;
 
         if (_playerUi != null)
+        {
+            Debug.Log("Ready");
             _playerUi.SetPoint(_enemyStartPoint.transform.position);
+        }
     }
 
     public void OnAtPoint()

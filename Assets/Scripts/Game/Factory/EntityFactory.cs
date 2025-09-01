@@ -70,6 +70,7 @@ public class EntityFactory : MonoBehaviour
         }
 
         generated.EntityUi = Instantiate(enemyData.PrefabEnemy);
+        generated.EntityUi.SetNameEntity(enemyData.TypeEnemy.ToString());
 
         GeneratedParameters parameters = GenerateParameters(enemyData);
         generated.Entity = new Entity(parameters);
