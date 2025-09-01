@@ -17,4 +17,5 @@ public struct AttributeParameters
     public int CountBonus;
     public int ValueAfterBuff;
     public int IncreasePerMove;
+    public int DamageMultiplier;
 }

@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     private LocationManager _locationManager;
     private GameLooper _gameLooper;
 
+    private bool isEndLoocation = false;
+
     private void OnDestroy()
     {
         UnsubscribeAllEvent();
@@ -34,7 +36,7 @@ public class GameManager : MonoBehaviour
             _queueLocations.Enqueue(typeLocation);
 
         //Player
-        _currentSession = new(_factory.GenerateEntity(TypeClass.Warrior));
+        _currentSession = new(_factory.GenerateEntity(typeClass));
 
         CreateLevel();
     }
@@ -56,6 +58,16 @@ public class GameManager : MonoBehaviour
         _displayController.SetStats(_currentSession.Player.Entity, _currentSession.Enemy.Entity);
 
         _locationManager.StartLocation();
+    }
+
+    public void LevelUpPlayer(TypeClass typeClass)
+    {
+        _factory.LevelUpEntity(_currentSession.Player.Entity, typeClass);
+    }
+
+    public void EndLocation()
+    {
+        _locationManager.EndLocation();
     }
 
     private void CreateLocation(TypeLocation typeLocation)
@@ -89,7 +101,10 @@ public class GameManager : MonoBehaviour
     private void OnEndAnimation()
     {
         Debug.Log("startloop...");
-        _gameLooper.MakeOneLoop();
+        if (!isEndLoocation)
+            _gameLooper.MakeOneLoop();
+        else
+            CreateLevel();
     }
 
     private void OnEndOneLoop(DamageData damageData)
@@ -105,7 +120,10 @@ public class GameManager : MonoBehaviour
         if (deathEntity.TypeEntity == TypeEntity.Player)
             _displayController.ActivateDeathPlayerWindow();
         else
+        {
+            isEndLoocation = true;
             _displayController.ActivateNextLocationWindow();
+        }
     }
 
     private void UnsubscribeAllEvent()
@@ -129,6 +147,7 @@ public class GameManager : MonoBehaviour
 
     private void DeleteLevel()
     {
+        isEndLoocation = false;
         UnsubscribeAllEvent();
         Destroy(_locationManager.gameObject);
         Destroy(_gameLooper.gameObject);

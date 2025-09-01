@@ -7,4 +7,6 @@ public enum TypeAttribute
     Reage,
     Poison,
     ImpulseToAction,
+    ImmunSlashingDamage,
+    VulnerabilityCrushingDamage,
 }

@@ -24,16 +24,7 @@ public class EntityFactory : MonoBehaviour
     public GeneratedData CreatePlayer(TypeClass typeClass)
     {
         GeneratedData generated = new();
-        Player player = _playerData.Players[0];
-
-        foreach(Player pl in _playerData.Players)
-        {
-            if (pl.TypeClass == typeClass)
-            {
-                player = pl;
-                break;
-            }
-        }
+        Player player = SearchPlayerParameters(typeClass);
 
         generated.EntityUi = Instantiate(player.PrefabPlayer);
 
@@ -86,12 +77,51 @@ public class EntityFactory : MonoBehaviour
         return generated;
     }
 
+    public void LevelUpPlayer(Entity entity, TypeClass typeClass)
+    {
+        int level = 0;
+        Player player = SearchPlayerParameters(typeClass);
+
+        switch (typeClass)
+        {
+            case TypeClass.Warrior:
+                level += entity.LevelData.WarriorLevel;
+                break;
+            case TypeClass.Barbarian:
+                level += entity.LevelData.BararianLevel;
+                break;
+            case TypeClass.Robber:
+                level += entity.LevelData.RobberLevel;
+                break;
+        }
+
+        if (player.Skills.Count <= level)
+            return;
+
+        GeneratedParameters parameters = new();
+        SkillArray skillArray = player.Skills[level];
+
+        parameters.TypeClass = player.TypeClass;
+        parameters.TypeEntity = TypeEntity.Player;
+        parameters.Weapon = entity.Weapon;
+        parameters.Strength = entity.Strength + skillArray.Strength;
+        parameters.Dexterity = entity.Dexterity + skillArray.Dexterity;
+        parameters.Endurance = entity.Endurance + skillArray.Endurance;
+        parameters.HealthPoint = entity.MaxHealPoint + skillArray.Endurance + player.HealthPointPerLevel;
+
+        AddSkill(parameters, skillArray);
+        AddAttribute(parameters, skillArray);
+
+        entity.AddParameters(parameters);
+    }
+
     private GeneratedParameters GenerateParameters(Player player, int min, int max)
     {
         GeneratedParameters parameters = new();
 
         WeaponParameters weaponParameters = SearchWeaponParameters(player.TypeWeapon);
 
+        parameters.TypeClass = player.TypeClass;
         parameters.TypeEntity = TypeEntity.Player;
         parameters.Weapon = new Weapon(weaponParameters.TypeWeapon, weaponParameters.TypeDamage, weaponParameters.WeaponDamage);
         parameters.Strength = Random.Range(min, max + 1);
@@ -130,7 +160,7 @@ public class EntityFactory : MonoBehaviour
 
     private void AddSkill(GeneratedParameters parameters, SkillArray skillArrays)
     {
-        foreach(TypeSkill typeSkill in skillArrays.Skills)
+        foreach (TypeSkill typeSkill in skillArrays.Skills)
         {
             SkillParameters par = SearchSkillParameters(typeSkill);
             Skill newSkill = null;
@@ -162,25 +192,11 @@ public class EntityFactory : MonoBehaviour
 
     private void AddAttribute(GeneratedParameters parameters, SkillArray skillArrays)
     {
-        foreach(TypeAttribute attribute in skillArrays.Attributes)
+        foreach (TypeAttribute attribute in skillArrays.Attributes)
         {
-            AttributeParameters par = SearchAttributeParameters(attribute);
-            Attribute newAttribute = null;
+            Attribute newAttribute = CreateAttribute(attribute);
 
-            switch (attribute)
-            {
-                case TypeAttribute.Reage:
-                    newAttribute = new RageAttribute(par);
-                    break;
-                case TypeAttribute.Poison:
-                    newAttribute = new PoisonAttribute(par);
-                    break;
-                case TypeAttribute.ImpulseToAction:
-                    newAttribute = new RageAttribute(par);
-                    break;
-            }
-
-            if(newAttribute != null)
+            if (newAttribute != null)
                 parameters.Attributes.Add(newAttribute);
         }
     }
@@ -211,13 +227,19 @@ public class EntityFactory : MonoBehaviour
         switch (typeAttribute)
         {
             case TypeAttribute.ImpulseToAction:
-                newAttribute = new RageAttribute(parameters);
+                newAttribute = new ImpulseToAction(parameters);
                 break;
             case TypeAttribute.Reage:
                 newAttribute = new RageAttribute(parameters);
                 break;
             case TypeAttribute.Poison:
                 newAttribute = new PoisonAttribute(parameters);
+                break;
+            case TypeAttribute.ImmunSlashingDamage:
+                newAttribute = new ImmuneSlashingDamageAttribute(parameters);
+                break;
+            case TypeAttribute.VulnerabilityCrushingDamage:
+                newAttribute = new VulnerabilityCrushingDamageAttribute(parameters);
                 break;
         }
 
@@ -226,11 +248,20 @@ public class EntityFactory : MonoBehaviour
 
     private WeaponParameters SearchWeaponParameters(TypeWeapon typeWeapon)
     {
-        foreach(WeaponParameters weapon in _weaponData.Weapons)
+        foreach (WeaponParameters weapon in _weaponData.Weapons)
             if (weapon.TypeWeapon == typeWeapon)
                 return weapon;
 
         return _weaponData.Weapons[0];
+    }
+
+    private Player SearchPlayerParameters(TypeClass typeClass)
+    {
+        foreach (Player player in _playerData.Players)
+            if (player.TypeClass == typeClass)
+                return player;
+
+        return _playerData.Players[0];
     }
 }
 
@@ -242,6 +273,7 @@ public struct GeneratedData
 
 public class GeneratedParameters
 {
+    public TypeClass TypeClass;
     public TypeEntity TypeEntity;
     public float HealthPoint;
     public Weapon Weapon;

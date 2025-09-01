@@ -1,6 +1,7 @@
 public class DamageData
 {
     public bool IsMiss;
+    public bool IsDamageNotDodgeable;
     public int CountMoves;
     public Entity Attacker;
     public Entity Target;

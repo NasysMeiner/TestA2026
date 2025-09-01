@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-
 public abstract class Attribute : IBonus
 {
     private TypeAttribute _typeAttribute;
@@ -15,7 +13,7 @@ public abstract class Attribute : IBonus
     public TypeAttribute TypeAttribute => _typeAttribute;
     public OverlayType OverlayType => _overlayType;
 
-    public Attribute (Attribute attribute)
+    public Attribute(Attribute attribute)
     {
         _typeAttribute = attribute._typeAttribute;
         _attrubuteVariation = attribute._attrubuteVariation;

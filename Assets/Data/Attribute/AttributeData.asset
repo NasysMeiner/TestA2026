@@ -19,15 +19,32 @@ MonoBehaviour:
     CountBonus: 3
     ValueAfterBuff: -1
     IncreasePerMove: 0
+    DamageMultiplier: 0
   - TypeAttribute: 2
     SkillVariation: 1
     BuffValue: 1
     CountBonus: 9999
     ValueAfterBuff: 0
     IncreasePerMove: 1
+    DamageMultiplier: 0
   - TypeAttribute: 3
     SkillVariation: 0
-    BuffValue: 3
+    BuffValue: 0
     CountBonus: 1
     ValueAfterBuff: 0
     IncreasePerMove: 0
+    DamageMultiplier: 2
+  - TypeAttribute: 4
+    SkillVariation: 1
+    BuffValue: 0
+    CountBonus: 9999
+    ValueAfterBuff: 0
+    IncreasePerMove: 0
+    DamageMultiplier: 0
+  - TypeAttribute: 5
+    SkillVariation: 1
+    BuffValue: 0
+    CountBonus: 9999
+    ValueAfterBuff: 0
+    IncreasePerMove: 0
+    DamageMultiplier: 2

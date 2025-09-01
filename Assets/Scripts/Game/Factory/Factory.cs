@@ -11,6 +11,11 @@ public class Factory : MonoBehaviour
         _entityFactory = playerFactory;
     }
 
+    public void LevelUpEntity(Entity entity, TypeClass typeClass)
+    {
+        _entityFactory.LevelUpPlayer(entity, typeClass);
+    }
+
     public GeneratedData GenerateEntity(TypeClass typeClass)
     {
         return _entityFactory.CreatePlayer(typeClass);

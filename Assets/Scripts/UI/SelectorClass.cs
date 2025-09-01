@@ -1,46 +1,42 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SelectorClass : MonoBehaviour
 {
     [SerializeField] private DisplayController _displayController;
-    [SerializeField] private List<SelectorButtonClass> _buttons = new();
-
-    private SelectorButtonClass _currentButtonClass = null;
 
     private bool _isCreate = false;
 
-    public void SetTypeClass(SelectorButtonClass buttonClass)
-    {
-        if (_currentButtonClass != null)
-            _currentButtonClass.EnableButton();
-
-        _currentButtonClass = buttonClass;
-        _currentButtonClass.DisableButton();
-    }
-
-    public void ActiveWindow()
+    private void OnEnable()
     {
         _isCreate = false;
     }
 
-    public void GenerateGame()
+    public void CreateNextLevel()
     {
-        if (!_isCreate && _currentButtonClass != null)
+        if(!_isCreate)
         {
             _isCreate = true;
-            _displayController.CreateSession(_currentButtonClass.TypeClass);
+            _displayController.CreateNextLevel();
             gameObject.SetActive(false);
-            _currentButtonClass = null;
         }
     }
 
-    public void LevelUp(SelectorButtonClass buttonClass)
+    public void GenerateGame(SelectorButtonClass selectorButton)
     {
-        if(!_isCreate && _currentButtonClass != null)
+        if (!_isCreate)
         {
             _isCreate = true;
-            //NextLevel
+            _displayController.CreateSession(selectorButton.TypeClass);
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void LevelUp(SelectorButtonClass selectorButton)
+    {
+        if (!_isCreate)
+        {
+            _isCreate = true;
+            _displayController.LevelUpPlayer(selectorButton.TypeClass);
             gameObject.SetActive(false);
         }
     }

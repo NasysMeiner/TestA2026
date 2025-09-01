@@ -4,19 +4,22 @@ public class DisplayController : MonoBehaviour
 {
     [SerializeField] private GameObject _deathPlayerWindow;
     [SerializeField] private GameObject _nextLocationWindow;
+    [SerializeField] private SelectorClass _shopWindow;
     [SerializeField] private SelectorClass _createSessionWindow;
-    [SerializeField] private SelectorClass _levelUpWindow;
 
     [SerializeField] private StatsView _statsViewPlayer;
     [SerializeField] private StatsView _statsViewEnemy;
 
     private GameManager _gameManager;
 
-    private bool _isCreated = false;
-
     public void Init(GameManager gameManager)
     {
         _gameManager = gameManager;
+    }
+
+    public void EndLocation()
+    {
+        _gameManager.EndLocation();
     }
 
     public void CreateSession(TypeClass typeClass)
@@ -26,17 +29,18 @@ public class DisplayController : MonoBehaviour
 
     public void CreateNextLevel()
     {
-        if(!_isCreated)
-        {
-            _isCreated = true;
-            _gameManager.CreateLevel();
-            _nextLocationWindow.SetActive(false);
-        }
+        _gameManager.CreateLevel();
+    }
+
+    public void LevelUpPlayer(TypeClass typeClass)
+    {
+        _gameManager.LevelUpPlayer(typeClass);
+        CreateNextLevel();
     }
 
     public void EnableLevelUpWindow()
     {
-        _levelUpWindow.gameObject.SetActive(true);
+        _shopWindow.gameObject.SetActive(true);
     }
 
     public void ActivateDeathPlayerWindow()
@@ -46,7 +50,6 @@ public class DisplayController : MonoBehaviour
 
     public void ActivateNextLocationWindow()
     {
-        _isCreated = false;
         _nextLocationWindow.SetActive(true);
     }
 
@@ -54,7 +57,6 @@ public class DisplayController : MonoBehaviour
     {
         _deathPlayerWindow.SetActive(false);
         _createSessionWindow.gameObject.SetActive(true);
-        _createSessionWindow.ActiveWindow();
     }
 
     public void SetStats(Entity player, Entity enemy)

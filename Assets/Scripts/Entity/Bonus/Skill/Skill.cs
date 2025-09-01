@@ -4,12 +4,14 @@ public abstract class Skill : IBonus
     private int _recharge;
     private int _currentRecharg;
     private OverlayType _overlayType;
+    private TypeSkill _typeSkill;
 
     protected int _damageBonus;
     protected Attribute _debuff;
 
     public SkillVariation SkillVariation => _skillVariation;
     public OverlayType OverlayType => _overlayType;
+    public TypeSkill TypeSkill => _typeSkill;
 
     public Skill(Skill skill)
     {
@@ -17,6 +19,7 @@ public abstract class Skill : IBonus
         _recharge = skill._recharge;
         _damageBonus = skill._damageBonus;
         _overlayType = skill._overlayType;
+        _typeSkill = TypeSkill;
 
         _debuff = skill._debuff;
 
@@ -29,6 +32,7 @@ public abstract class Skill : IBonus
         _recharge = skillParameters.Recharg;
         _damageBonus = skillParameters.DamageBonus;
         _overlayType = OverlayType.Outside;
+        _typeSkill = skillParameters.TypeSkill;
 
         _debuff = skillParameters.DebuffTarget;
 

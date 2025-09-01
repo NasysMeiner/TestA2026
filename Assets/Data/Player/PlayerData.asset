@@ -17,8 +17,8 @@ MonoBehaviour:
   Players:
   - TypeClass: 0
     PrefabPlayer: {fileID: 8206001454839965445, guid: 4ee17e6433cd69c4d8f55dd4f1ee0d5e, type: 3}
-    HealthPointPerLevel: 100
-    TypeWeapon: 1
+    HealthPointPerLevel: 5
+    TypeWeapon: 6
     Skills:
     - Strength: 0
       Dexterity: 0
@@ -27,17 +27,17 @@ MonoBehaviour:
       Attributes: 03000000
     - Strength: 0
       Dexterity: 0
-      Endurance: 0
+      Endurance: 1
       Skills: 03000000
       Attributes: 03000000
     - Strength: 1
       Dexterity: 0
       Endurance: 0
       Skills: 
-      Attributes: 03000000
+      Attributes: 
   - TypeClass: 1
     PrefabPlayer: {fileID: 8206001454839965445, guid: 4ee17e6433cd69c4d8f55dd4f1ee0d5e, type: 3}
-    HealthPointPerLevel: 100
+    HealthPointPerLevel: 4
     TypeWeapon: 3
     Skills:
     - Strength: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
       Attributes: 
   - TypeClass: 2
     PrefabPlayer: {fileID: 8206001454839965445, guid: 4ee17e6433cd69c4d8f55dd4f1ee0d5e, type: 3}
-    HealthPointPerLevel: 100
+    HealthPointPerLevel: 6
     TypeWeapon: 2
     Skills:
     - Strength: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
     - Strength: 0
       Dexterity: 0
       Endurance: 0
-      Skills: 
+      Skills: 05000000
       Attributes: 
     - Strength: 0
       Dexterity: 0

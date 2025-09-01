@@ -12,7 +12,10 @@ public class LocationManager : MonoBehaviour
     private EntityUi _playerUi;
     private EntityUi _enemyUi;
 
-    private int _countReady = 3;
+    private int _countReady;
+    private int _countReadyAnimEndLoc = 1;
+    private int _countReadyAnimStartLoc = 2;
+    private int _countReadyAnimAttack = 3;
     private int _isReady = 0;
 
     private TypeLocation _typeLocation;
@@ -51,14 +54,23 @@ public class LocationManager : MonoBehaviour
 
     public void StartLocation()
     {
+        _countReady = _countReadyAnimStartLoc;
+
         if (_playerUi != null)
             _playerUi.SetPoint(_playerPoint.transform.position);
 
         if (_enemyUi != null)
             _enemyUi.SetPoint(_enemyPoint.transform.position);
 
-        OnAtPoint();
         Debug.Log("StartLocation anim...");
+    }
+
+    public void EndLocation()
+    {
+        _countReady = _countReadyAnimEndLoc;
+
+        if (_playerUi != null)
+            _playerUi.SetPoint(_enemyStartPoint.transform.position);
     }
 
     public void OnAtPoint()
@@ -89,6 +101,8 @@ public class LocationManager : MonoBehaviour
     private IEnumerator AnimationAttack(EntityUi attacker, EntityUi target, bool isDead)
     {
         Vector3 startPos = attacker.transform.position;
+
+        _countReady = _countReadyAnimAttack;
 
         yield return attacker.Move(target.transform.position, true);
 

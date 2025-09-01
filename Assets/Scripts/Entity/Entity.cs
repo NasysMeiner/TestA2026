@@ -7,9 +7,12 @@ public class Entity
     private List<Attribute> _attackAttribute = new();//DamageBonus out
     private List<Attribute> _defAttribute = new();//TakeDamageBonus in
 
+    private Dictionary<TypeSkill, int> _countSkill = new();
     private Dictionary<TypeAttribute, int> _countAttribute = new();
 
-    public int CurrentLevel { get; private set; }
+    private Dictionary<TypeAttribute, int> _countTimeAttribute = new();
+
+    public LevelData LevelData { get; private set; }
     public TypeEntity TypeEntity { get; private set; }
     public Weapon Weapon { get; private set; }
     public float HealPoint { get; private set; }
@@ -20,7 +23,12 @@ public class Entity
 
     public Entity(GeneratedParameters parameters)
     {
-        CurrentLevel = 1;
+        LevelData = new();
+        AddParameters(parameters);
+    }
+
+    public void AddParameters(GeneratedParameters parameters)
+    {
         TypeEntity = parameters.TypeEntity;
         Weapon = parameters.Weapon;
         HealPoint = parameters.HealthPoint;
@@ -29,24 +37,43 @@ public class Entity
         Dexterity = parameters.Dexterity;
         Endurance = parameters.Endurance;
 
-        foreach(Skill skill in parameters.Skills)
-        {
-            skill.SetBaseType();
+        LevelData.LevelUp(parameters.TypeClass);
 
-            if (skill.SkillVariation == SkillVariation.Attacking)
-                _damageSkills.Add(skill);
-            else
-                _deffSkills.Add(skill);
+        AddSkill(parameters.Skills);
+        AddAttribute(parameters.Attributes);
+    }
+
+    public void AddSkill(List<Skill> skills)
+    {
+        foreach (Skill skill in skills)
+        {
+            if (!_countSkill.ContainsKey(skill.TypeSkill))
+            {
+                skill.SetBaseType();
+                _countSkill.Add(skill.TypeSkill, 1);
+
+                if (skill.SkillVariation == SkillVariation.Attacking)
+                    _damageSkills.Add(skill);
+                else
+                    _deffSkills.Add(skill);
+            }
         }
+    }
 
-        foreach(Attribute attribute in parameters.Attributes)
+    public void AddAttribute(List<Attribute> attributes)
+    {
+        foreach (Attribute attribute in attributes)
         {
-            attribute.SetBaseType();
+            if (!_countAttribute.ContainsKey(attribute.TypeAttribute))
+            {
+                attribute.SetBaseType();
+                _countAttribute.Add(attribute.TypeAttribute, 1);
 
-            if (attribute.AttrubuteVariation == SkillVariation.Attacking)
-                _attackAttribute.Add(attribute);
-            else
-                _defAttribute.Add(attribute);
+                if (attribute.AttrubuteVariation == SkillVariation.Attacking)
+                    _attackAttribute.Add(attribute);
+                else
+                    _defAttribute.Add(attribute);
+            }
         }
     }
 
@@ -126,10 +153,10 @@ public class Entity
         if (debuff == null)
             return;
 
-        if(!_countAttribute.ContainsKey(debuff.TypeAttribute))
+        if (!_countTimeAttribute.ContainsKey(debuff.TypeAttribute))
         {
             _defAttribute.Add(debuff);
-            _countAttribute.Add(debuff.TypeAttribute, 1);
+            _countTimeAttribute.Add(debuff.TypeAttribute, 1);
         }
     }
 }
