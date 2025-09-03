@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3416348cf4ae64440a6b481dec9b0eeb, type: 3}
+  m_Name: UiWeaponData
+  m_EditorClassIdentifier: 
+  WeaponElements:
+  - TypeWeapon: 1
+    Name: "\u041C\u0435\u0447"
+    Icon: {fileID: 0}
+  - TypeWeapon: 2
+    Name: "\u0414\u0443\u0431\u0438\u043D\u0430"
+    Icon: {fileID: 0}
+  - TypeWeapon: 3
+    Name: "\u041A\u043B\u0438\u043D\u043E\u043A"
+    Icon: {fileID: 0}
+  - TypeWeapon: 4
+    Name: "\u0422\u043E\u043F\u043E\u0440"
+    Icon: {fileID: 0}
+  - TypeWeapon: 5
+    Name: "\u041A\u043E\u043F\u044C\u0451"
+    Icon: {fileID: 0}
+  - TypeWeapon: 6
+    Name: "\u041B\u0435\u0433\u0435\u043D\u0434\u0430\u0440\u043D\u044B\u0439 \u043C\u0435\u0447"
+    Icon: {fileID: 0}

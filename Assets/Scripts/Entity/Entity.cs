@@ -133,6 +133,11 @@ public class Entity
         HealPoint = MaxHealPoint;
     }
 
+    public void SetWeapon(Weapon weapon)
+    {
+        Weapon = weapon;
+    }
+
     private List<Attribute> ClearTimeBuffsAndDebuffs(List<Attribute> attributes)
     {
         List<Attribute> cleraListAttribute = new();

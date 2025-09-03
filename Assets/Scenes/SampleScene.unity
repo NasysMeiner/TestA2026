@@ -399,6 +399,7 @@ MonoBehaviour:
   _skillData: {fileID: 11400000, guid: 4fc15507325a87544a88916b9f65ad74, type: 2}
   _attributeData: {fileID: 11400000, guid: 4e62418633f0836498dd34637830a74d, type: 2}
   _prefabCanvas: {fileID: 5396966736537067182, guid: 6b2605d02dfedca49a4d24d29cadfa58, type: 3}
+  UiWeaponData: {fileID: 11400000, guid: ecf01b58e3afcd842b87be87acfa4e6d, type: 2}
 --- !u!114 &1090823614
 MonoBehaviour:
   m_ObjectHideFlags: 0

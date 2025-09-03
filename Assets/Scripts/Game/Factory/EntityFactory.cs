@@ -116,15 +116,20 @@ public class EntityFactory : MonoBehaviour
         entity.AddParameters(parameters);
     }
 
+    public Weapon CreateWeapon(TypeWeapon weapon)
+    {
+        WeaponParameters weaponParameters = SearchWeaponParameters(weapon);
+
+        return new Weapon(weaponParameters.TypeWeapon, weaponParameters.TypeDamage, weaponParameters.WeaponDamage);
+    }
+
     private GeneratedParameters GenerateParameters(Player player, int min, int max)
     {
         GeneratedParameters parameters = new();
 
-        WeaponParameters weaponParameters = SearchWeaponParameters(player.TypeWeapon);
-
         parameters.TypeClass = player.TypeClass;
         parameters.TypeEntity = TypeEntity.Player;
-        parameters.Weapon = new Weapon(weaponParameters.TypeWeapon, weaponParameters.TypeDamage, weaponParameters.WeaponDamage);
+        parameters.Weapon = CreateWeapon(player.TypeWeapon);
         parameters.Strength = Random.Range(min, max + 1);
         parameters.Dexterity = Random.Range(min, max + 1);
         parameters.Endurance = Random.Range(min, max + 1);

@@ -78,6 +78,11 @@ public class GameManager : MonoBehaviour
         isEndLoocation = true;
     }
 
+    public void SwapWeapon()
+    {
+        _currentSession.Player.Entity.SetWeapon(_factory.CreateWeapon(_currentSession.Enemy.Entity.Weapon.TypeWeapon));
+    }
+
     private void CreateLocation(TypeLocation typeLocation)
     {
         GeneratedLocation location = _factory.GenerateLocation(typeLocation);
@@ -136,7 +141,8 @@ public class GameManager : MonoBehaviour
         else
         {
             isEndLoocation = true;
-            _displayController.ActivateNextLocationWindow();
+            _currentSession.Enemy.Entity.SetWeapon(_factory.CreateWeapon(_currentSession.Enemy.Entity.Weapon.TypeWeapon));
+            _displayController.ActivateNextLocationWindow(_currentSession.Player.Entity.Weapon, _currentSession.Enemy.Entity.Weapon);
         }
     }
 

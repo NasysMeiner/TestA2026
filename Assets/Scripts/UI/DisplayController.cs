@@ -3,8 +3,8 @@ using UnityEngine;
 public class DisplayController : MonoBehaviour
 {
     [SerializeField] private GameObject _deathPlayerWindow;
-    [SerializeField] private GameObject _nextLocationWindow;
     [SerializeField] private GameObject _endWindow;
+    [SerializeField] private SwapWeaponView _swapWeaponView;
     [SerializeField] private SelectorClass _shopWindow;
     [SerializeField] private SelectorClass _createSessionWindow;
 
@@ -14,9 +14,17 @@ public class DisplayController : MonoBehaviour
 
     private GameManager _gameManager;
 
-    public void Init(GameManager gameManager)
+    public void Init(GameManager gameManager, UiWeaponData uiWeaponData)
     {
         _gameManager = gameManager;
+
+        _swapWeaponView.Init(uiWeaponData);
+    }
+
+    public void SwapWeapon()
+    {
+        _gameManager.SwapWeapon();
+        EndLocation();
     }
 
     public void EndLocation()
@@ -58,9 +66,10 @@ public class DisplayController : MonoBehaviour
         _deathPlayerWindow.SetActive(true);
     }
 
-    public void ActivateNextLocationWindow()
+    public void ActivateNextLocationWindow(Weapon playerWeapon, Weapon enemyWeapon)
     {
-        _nextLocationWindow.SetActive(true);
+        _swapWeaponView.gameObject.SetActive(true);
+        _swapWeaponView.SetWeaponStats(playerWeapon, enemyWeapon);
     }
 
     public void ActivateCreateSessionWindow()

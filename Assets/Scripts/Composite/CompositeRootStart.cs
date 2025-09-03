@@ -19,6 +19,7 @@ public class CompositeRootStart : CompositeRoot
     [SerializeField] private AttributeData _attributeData;
     [Header("UI")]
     [SerializeField] private DisplayController _prefabCanvas;
+    [SerializeField] private UiWeaponData UiWeaponData;
 
     private DisplayController _displayController;
 
@@ -32,6 +33,6 @@ public class CompositeRootStart : CompositeRoot
 
         _gameManager.Init(_factory, _locQue, _displayController);
 
-        _displayController.Init(_gameManager);
+        _displayController.Init(_gameManager, UiWeaponData);
     }
 }

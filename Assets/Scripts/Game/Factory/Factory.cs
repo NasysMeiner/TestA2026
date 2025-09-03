@@ -30,4 +30,9 @@ public class Factory : MonoBehaviour
     {
         return _locationFactory.CreateLocation(typeLocation);
     }
+
+    public Weapon CreateWeapon(TypeWeapon weapon)
+    {
+        return _entityFactory.CreateWeapon(weapon);
+    }
 }
