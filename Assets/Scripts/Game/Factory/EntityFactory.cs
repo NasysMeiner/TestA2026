@@ -9,7 +9,7 @@ public class EntityFactory : MonoBehaviour
     private SkillData _skillData;
     private AttributeData _attributeData;
 
-    private Dictionary<TypeEnemy, int> _lastEnemy;
+    private Dictionary<TypeEnemy, int> _lastEnemy = new();
     private int _currentEnemy = 0;
 
     public void Init(PlayerData playerData, EnemyData enemyData, WeaponData weaponData, SkillData skillData, AttributeData attributeData)

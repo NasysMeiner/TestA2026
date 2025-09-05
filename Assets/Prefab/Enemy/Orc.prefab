@@ -121,3 +121,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 10
   _indent: 1
+  _animator: {fileID: 4375104172107136422}

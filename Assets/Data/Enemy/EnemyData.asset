@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b499db080913e3842bf53a343fd4ada9, type: 3}
   m_Name: EnemyData
   m_EditorClassIdentifier: 
-  IsRandom: 0
-  IsUnique: 0
+  IsRandom: 1
+  IsUnique: 1
   Enemies:
   - TypeEnemy: 0
     PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
@@ -30,7 +30,7 @@ MonoBehaviour:
       Skills: 
       Attributes: 
   - TypeEnemy: 1
-    PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
+    PrefabEnemy: {fileID: 4343983132166513057, guid: cfeaee13c4af02d4da05acf71c6583a1, type: 3}
     Health: 10
     TypeWeapon: 2
     WeaponDamage: 2
@@ -44,7 +44,7 @@ MonoBehaviour:
       Skills: 
       Attributes: 05000000
   - TypeEnemy: 2
-    PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
+    PrefabEnemy: {fileID: 5313021466796120902, guid: 37eac489e7e86954aa8d8b561b4ea21f, type: 3}
     Health: 8
     TypeWeapon: 5
     WeaponDamage: 1
@@ -58,7 +58,7 @@ MonoBehaviour:
       Skills: 
       Attributes: 04000000
   - TypeEnemy: 3
-    PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
+    PrefabEnemy: {fileID: 7570745458984606579, guid: d85215117403b204da337d1bdff94a11, type: 3}
     Health: 6
     TypeWeapon: 1
     WeaponDamage: 3
@@ -72,7 +72,7 @@ MonoBehaviour:
       Skills: 02000000
       Attributes: 
   - TypeEnemy: 4
-    PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
+    PrefabEnemy: {fileID: 3127439520504408788, guid: eef52e360f211f54b8a3f815b42aaa5d, type: 3}
     Health: 10
     TypeWeapon: 4
     WeaponDamage: 1
@@ -86,7 +86,7 @@ MonoBehaviour:
       Skills: 05000000
       Attributes: 
   - TypeEnemy: 5
-    PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
+    PrefabEnemy: {fileID: 6270291798040235753, guid: d26769b8e17c1b943b81abf9a5e24db1, type: 3}
     Health: 20
     TypeWeapon: 6
     WeaponDamage: 4

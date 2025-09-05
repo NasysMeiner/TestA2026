@@ -2,13 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Animator))]
 public class EntityUi : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _indent = 0.5f;
 
-    private Animator _animator;
+    [SerializeField] private Animator _animator;
 
     private bool _isFinishAttack;
     private string _nameEntity;
@@ -16,11 +15,6 @@ public class EntityUi : MonoBehaviour
     public string NameEntity => _nameEntity;
 
     public event UnityAction AtPoint;
-
-    private void OnEnable()
-    {
-        _animator = GetComponent<Animator>();
-    }
 
     public void SetNameEntity(string name)
     {
