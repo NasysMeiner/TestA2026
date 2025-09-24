@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         CreateEnemy(_locationManager.TypeLocation);
 
         _gameLooper.Init(_currentSession.Player.Entity, _currentSession.Enemy.Entity);
-        _locationManager.Init(_currentSession.Player.EntityUi, _currentSession.Enemy.EntityUi);
+        _locationManager.Init(_currentSession, _displayController.ActionView, _displayController.HealthViewController);
 
         _displayController.SetStats(_currentSession.Player.Entity, _currentSession.Enemy.Entity, _currentSession.Enemy.EntityUi);
 

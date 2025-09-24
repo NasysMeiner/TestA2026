@@ -83,6 +83,10 @@ public class Entity
     {
         data.IsDead = false;
         data.Attacker = this;
+
+        if (data.IsMiss)
+            return;
+
         data.Damage = Strength;
         data.TypeDamage = Weapon.TypeDamage;
         data.DamageWeapon = Weapon.Damage;
@@ -96,15 +100,20 @@ public class Entity
 
     public void TakeDamage(DamageData data)
     {
+        foreach (Attribute attribute in _defAttribute)
+            attribute.UseBuff(data);
+
+        if (data.IsMiss)
+            goto skip;
+
         ApplyDebuff(data.DebuffTarget);
 
         foreach (Skill skill in _deffSkills)
             skill.UseSkill(data);
 
-        foreach (Attribute attribute in _defAttribute)
-            attribute.UseBuff(data);
+        skip:
 
-        int finalDamage = data.Damage + data.DamageWeapon;
+        int finalDamage = data.FinalDamage;
 
         if (finalDamage < 0)
             finalDamage = 0;

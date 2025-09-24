@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b499db080913e3842bf53a343fd4ada9, type: 3}
   m_Name: EnemyData
   m_EditorClassIdentifier: 
-  IsRandom: 1
-  IsUnique: 1
+  IsRandom: 0
+  IsUnique: 0
   Enemies:
   - TypeEnemy: 0
     PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
-    Health: 5
+    Health: 500
     TypeWeapon: 3
     WeaponDamage: 2
     Strength: 1
-    Dexterity: 1
+    Dexterity: 3
     Endurance: 1
     Skills:
       Strength: 0

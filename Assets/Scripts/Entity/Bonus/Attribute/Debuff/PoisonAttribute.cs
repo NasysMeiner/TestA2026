@@ -29,7 +29,7 @@ public class PoisonAttribute : Attribute
         if (!CheckBuffDuration())
             return;
 
-        damageData.Damage += _currentDamage;
+        damageData.AddDamageType(TypeAttribute, _currentDamage);
         _currentDamage += _increasePerMove;
     }
 

@@ -27,6 +27,7 @@ public class EntityFactory : MonoBehaviour
         Player player = SearchPlayerParameters(typeClass);
 
         generated.EntityUi = Instantiate(player.PrefabPlayer);
+        generated.EntityUi.SetNameEntity(player.TypeClass.ToString());
 
         GeneratedParameters playerParameters = GenerateParameters(player, _playerData.MinValue, _playerData.MaxValue);
         generated.Entity = new Entity(playerParameters);

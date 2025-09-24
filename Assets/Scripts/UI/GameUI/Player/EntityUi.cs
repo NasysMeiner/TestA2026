@@ -1,6 +1,8 @@
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.GraphicsBuffer;
 
 public class EntityUi : MonoBehaviour
 {
@@ -29,13 +31,21 @@ public class EntityUi : MonoBehaviour
 
     public void AnimationAttack(Vector3 targetPoint)
     {
-
+        
     }
 
-    public IEnumerator Attack()
+    public IEnumerator Attack(Vector3 targetPoint, TypeWeapon playerWeapon = TypeWeapon.Empty)
     {
+        yield return Move(targetPoint, true);
+
         _isFinishAttack = false;
-        _animator.SetTrigger("Attack");
+
+        string weaponAttack = "Attack";
+
+        if (playerWeapon != TypeWeapon.Empty)
+            weaponAttack = playerWeapon.ToString() + weaponAttack;
+
+        _animator.SetTrigger(weaponAttack);
 
         while (!_isFinishAttack)
             yield return null;

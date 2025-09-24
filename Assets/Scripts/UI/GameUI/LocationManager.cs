@@ -9,6 +9,9 @@ public class LocationManager : MonoBehaviour
     [SerializeField] private GameObject _enemyStartPoint;
     [SerializeField] private GameObject _enemyPoint;
 
+    private ActionView _actionView;
+    private HealthViewController _healthViewController;
+
     private EntityUi _playerUi;
     private EntityUi _enemyUi;
 
@@ -33,22 +36,26 @@ public class LocationManager : MonoBehaviour
         _typeLocation = typeLocation;
     }
 
-    public void Init(EntityUi playerUi, EntityUi enemyUi)
+    public void Init(Session currentSession, ActionView actionView, HealthViewController healthViewController)
     {
-        if(playerUi != null)
+        if(currentSession.Player.EntityUi != null)
         {
-            _playerUi = playerUi;
+            _playerUi = currentSession.Player.EntityUi;
             _playerUi.transform.position = _playerStartPoint.transform.position;
             _playerUi.AtPoint += OnAtPoint;
         }
         
-        if(enemyUi != null)
+        if(currentSession.Enemy.EntityUi != null)
         {
-            _enemyUi = enemyUi;
+            _enemyUi = currentSession.Enemy.EntityUi;
             _enemyUi.transform.position = _enemyStartPoint.transform.position;
             _enemyUi.transform.SetParent(gameObject.transform);
             _enemyUi.AtPoint += OnAtPoint;
         }
+
+        _actionView = actionView;
+        _healthViewController = healthViewController;
+        _healthViewController.StartLocation(currentSession);
     }
 
     public void StartLocation()
@@ -101,21 +108,30 @@ public class LocationManager : MonoBehaviour
         if (damageData.Attacker.TypeEntity != TypeEntity.Player)
             (attacker, target) = (target, attacker);
 
-        //SetSkillAttribute;
-
-        StartCoroutine(AnimationAttack(attacker, target, damageData.IsDead));
+        if(damageData.Attacker.TypeEntity == TypeEntity.Enemy)
+            StartCoroutine(AnimationAttack(attacker, target, damageData));
+        else
+            StartCoroutine(AnimationAttack(attacker, target, damageData, damageData.Attacker.Weapon.TypeWeapon));
     }
 
-    private IEnumerator AnimationAttack(EntityUi attacker, EntityUi target, bool isDead)
+    private IEnumerator AnimationAttack(EntityUi attacker, EntityUi target, DamageData damageData, TypeWeapon playerWeapon = TypeWeapon.Empty)
     {
         Vector3 startPos = attacker.transform.position;
 
         _countReady = _countReadyAnimAttack;
 
-        yield return attacker.Move(target.transform.position, true);
+        yield return attacker.Attack(target.transform.position, playerWeapon);
 
-        yield return attacker.Attack();
-        yield return target.TakeDamageAnimation(isDead);
+        if (damageData.FinalDamage != 0)
+        {
+            yield return target.TakeDamageAnimation(damageData.IsDead);
+            _actionView.ViewDamageType(target.transform.position, damageData);
+        }
+
+        if(damageData.IsMiss)
+            _actionView.ViewTextMiss(target.transform.position);
+
+        UpdateHealthView(damageData);
 
         yield return new WaitForSeconds(0.5f);
 
@@ -136,5 +152,13 @@ public class LocationManager : MonoBehaviour
             _enemyUi.AtPoint -= OnAtPoint;
             Destroy(_enemyUi.gameObject);
         }
+    }
+
+    private void UpdateHealthView(DamageData damageData)
+    {
+        Entity player = damageData.Attacker.TypeEntity == TypeEntity.Player ? damageData.Attacker : damageData.Target;
+        Entity enemy = damageData.Attacker.TypeEntity != TypeEntity.Player ? damageData.Attacker : damageData.Target;
+
+        _healthViewController.UpdateHealth(player.HealPoint, enemy.HealPoint);
     }
 }

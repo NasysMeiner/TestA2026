@@ -7,6 +7,8 @@ public class DisplayController : MonoBehaviour
     [SerializeField] private SwapWeaponView _swapWeaponView;
     [SerializeField] private SelectorClass _shopWindow;
     [SerializeField] private SelectorClass _createSessionWindow;
+    [SerializeField] private ActionView _actionView;
+    [SerializeField] private HealthViewController _healthViewController;
 
     [SerializeField] private StatsView _statsEndGame;
     [SerializeField] private StatsView _statsViewPlayer;
@@ -14,11 +16,15 @@ public class DisplayController : MonoBehaviour
 
     private GameManager _gameManager;
 
+    public ActionView ActionView => _actionView;
+    public HealthViewController HealthViewController => _healthViewController;
+
     public void Init(GameManager gameManager, UiWeaponData uiWeaponData)
     {
         _gameManager = gameManager;
 
         _swapWeaponView.Init(uiWeaponData);
+        _actionView.Init();
     }
 
     public void SwapWeapon()

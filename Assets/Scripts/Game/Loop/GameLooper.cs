@@ -28,7 +28,6 @@ public class GameLooper : MonoBehaviour
         if (_player.HealPoint <= 0 || _enemy.HealPoint <= 0)
         {
             Death?.Invoke(_player.HealPoint <= 0 ? _player : _enemy);
-            Debug.Log("Death");
             return;
         }
 
@@ -55,9 +54,9 @@ public class GameLooper : MonoBehaviour
         int randomNumber = Random.Range(1, attacker.Dexterity + target.Dexterity + 1);
 
         if (randomNumber <= target.Dexterity)
-            return false;
-        else
             return true;
+        else
+            return false;
     }
 
     private void SelectAttacker()
