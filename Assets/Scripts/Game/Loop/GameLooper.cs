@@ -52,6 +52,7 @@ public class GameLooper : MonoBehaviour
     private bool CalculateMiss(Entity attacker, Entity target)
     {
         int randomNumber = Random.Range(1, attacker.Dexterity + target.Dexterity + 1);
+        Debug.Log("RND: " + randomNumber);
 
         if (randomNumber <= target.Dexterity)
             return true;

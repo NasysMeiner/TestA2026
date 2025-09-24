@@ -18,7 +18,7 @@ public class LocationManager : MonoBehaviour
     private int _countReady;
     private int _countReadyAnimEndLoc = 1;
     private int _countReadyAnimAttack = 3;
-    private int _isReady = 0;
+    private int _isReady;
 
     private TypeLocation _typeLocation;
 
@@ -61,6 +61,7 @@ public class LocationManager : MonoBehaviour
     public void StartLocation()
     {
         _countReady = 0;
+        _isReady = 0;
 
         if (_playerUi != null)
         {
@@ -94,9 +95,8 @@ public class LocationManager : MonoBehaviour
 
         if (_isReady == _countReady)
         {
-            Debug.Log("end anim...");
-            EndAnimation?.Invoke();
             _isReady = 0;
+            EndAnimation?.Invoke();
         }
     }
 
@@ -120,10 +120,11 @@ public class LocationManager : MonoBehaviour
 
         _countReady = _countReadyAnimAttack;
 
-        yield return attacker.Attack(target.transform.position, playerWeapon);
+        yield return attacker.Attack(target.transform.position, playerWeapon, damageData.UseMainSkill);
 
         if (damageData.FinalDamage != 0)
         {
+            Debug.Log(damageData.FinalDamage);
             yield return target.TakeDamageAnimation(damageData.IsDead);
             _actionView.ViewDamageType(target.transform.position, damageData);
         }

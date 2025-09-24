@@ -12,7 +12,7 @@ public class DamageData
     public int DamageWeapon;
     public bool IsDead;
 
-    public Skill UseMainSkill;
+    public TypeSkill UseMainSkill;
     public Attribute DebuffTarget;
 
     public List<KeyValuePair<TypeAttribute, int>> damageAttribute = new();

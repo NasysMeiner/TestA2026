@@ -1,13 +1,12 @@
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEngine.GraphicsBuffer;
 
 public class EntityUi : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _indent = 0.5f;
+    [SerializeField] private ParticleSystem _fireBreath;
 
     [SerializeField] private Animator _animator;
 
@@ -31,16 +30,25 @@ public class EntityUi : MonoBehaviour
 
     public void AnimationAttack(Vector3 targetPoint)
     {
-        
+
     }
 
-    public IEnumerator Attack(Vector3 targetPoint, TypeWeapon playerWeapon = TypeWeapon.Empty)
+    public IEnumerator Attack(Vector3 targetPoint, TypeWeapon playerWeapon = TypeWeapon.Empty, TypeSkill typeSkill = TypeSkill.Empty)
     {
-        yield return Move(targetPoint, true);
+        string weaponAttack = "Attack";
+
+        if (typeSkill == TypeSkill.FireBreath)
+        {
+            weaponAttack = "Breath";
+            Debug.Log("FIRE");
+            AtPoint?.Invoke();
+        }
+        else
+        {
+            yield return Move(targetPoint, true);
+        }
 
         _isFinishAttack = false;
-
-        string weaponAttack = "Attack";
 
         if (playerWeapon != TypeWeapon.Empty)
             weaponAttack = playerWeapon.ToString() + weaponAttack;
@@ -51,9 +59,15 @@ public class EntityUi : MonoBehaviour
             yield return null;
     }
 
+    public void OnActiveFireBreath()
+    {
+        _fireBreath.Clear();
+        _fireBreath.Play();
+    }
+
     public IEnumerator TakeDamageAnimation(bool isDead)
     {
-        if(!isDead)
+        if (!isDead)
             _animator.SetTrigger("Hit");
         else
             _animator.SetTrigger("Dead");

@@ -175,10 +175,10 @@ public class EntityFactory : MonoBehaviour
             switch (typeSkill)
             {
                 case TypeSkill.DaggerDarkness:
-                    newSkill = new DaggerSkill(par);
+                    newSkill = new BaseDamageSkill(par);
                     break;
                 case TypeSkill.FireBreath:
-                    newSkill = new DaggerSkill(par);
+                    newSkill = new DragonBreathSkill(par);
                     break;
                 case TypeSkill.Shield:
                     newSkill = new ShieldSkill(par);

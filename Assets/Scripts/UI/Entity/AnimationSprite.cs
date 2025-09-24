@@ -7,6 +7,10 @@ public class AnimationSprite : MonoBehaviour
     public void OnFinishAttack()
     {
         _entityUi.OnFinishAttack();
+    }
 
+    public void OnActiveFireBreath()
+    {
+        _entityUi.OnActiveFireBreath();
     }
 }

@@ -29,7 +29,7 @@ MonoBehaviour:
     TypeDamage: 1
     WeaponDamage: 4
   - TypeWeapon: 5
-    TypeDamage: 2
+    TypeDamage: 3
     WeaponDamage: 3
   - TypeWeapon: 6
     TypeDamage: 1

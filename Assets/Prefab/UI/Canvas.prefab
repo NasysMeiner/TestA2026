@@ -13059,9 +13059,9 @@ MonoBehaviour:
   _velocityVector: {x: 0, y: 80, z: 0}
   _alphaVector: {x: 0, y: 2, z: 0}
   _textStandartDamage: {fileID: 1934481181218243539}
-  _offVectorStandartDamage: {x: -30, y: 20, z: 0}
+  _offVectorStandartDamage: {x: -30, y: 60, z: 0}
   _textPoisonDamage: {fileID: 1614857481068156522}
-  _offVectorPoisonDamage: {x: -90, y: 20, z: 0}
+  _offVectorPoisonDamage: {x: -90, y: -60, z: 0}
 --- !u!1 &7265586176544622214
 GameObject:
   m_ObjectHideFlags: 0

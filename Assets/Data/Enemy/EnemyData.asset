@@ -15,13 +15,13 @@ MonoBehaviour:
   IsRandom: 0
   IsUnique: 0
   Enemies:
-  - TypeEnemy: 0
-    PrefabEnemy: {fileID: 9208586252195074426, guid: beb378a20b37e5d4d8c07964d0025100, type: 3}
-    Health: 500
+  - TypeEnemy: 1
+    PrefabEnemy: {fileID: 4343983132166513057, guid: cfeaee13c4af02d4da05acf71c6583a1, type: 3}
+    Health: 5
     TypeWeapon: 3
     WeaponDamage: 2
     Strength: 1
-    Dexterity: 3
+    Dexterity: 1
     Endurance: 1
     Skills:
       Strength: 0
