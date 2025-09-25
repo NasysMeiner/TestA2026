@@ -37,13 +37,9 @@ public class GameLooper : MonoBehaviour
 
         damageData.IsMiss = CalculateMiss(_attacker, _target);
 
-        if(damageData.IsMiss)
-            Debug.Log("Miss");
-
         _attacker.CalculateDamage(damageData, _target);
         _target.TakeDamage(damageData);
 
-        Debug.Log("endloop...");
         EndOneLoop?.Invoke(damageData);
 
         _countMoves++;
@@ -52,7 +48,6 @@ public class GameLooper : MonoBehaviour
     private bool CalculateMiss(Entity attacker, Entity target)
     {
         int randomNumber = Random.Range(1, attacker.Dexterity + target.Dexterity + 1);
-        Debug.Log("RND: " + randomNumber);
 
         if (randomNumber <= target.Dexterity)
             return true;

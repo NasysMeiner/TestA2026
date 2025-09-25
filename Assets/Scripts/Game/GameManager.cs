@@ -92,8 +92,6 @@ public class GameManager : MonoBehaviour
         _locationManager.EndAnimation += OnEndAnimation;
         _gameLooper.EndOneLoop += OnEndOneLoop;
         _gameLooper.Death += OnDeath;
-
-        Debug.Log("TypeLocation: " + _locationManager.TypeLocation);
     }
 
     private void CreateEnemy(TypeLocation typeLocation)
@@ -110,7 +108,6 @@ public class GameManager : MonoBehaviour
 
     private void OnEndAnimation()
     {
-        Debug.Log("startloop...");
         if (_locationManager.TypeLocation == TypeLocation.LocationEnd)
         {
             _displayController.EnableEndWindow();
@@ -126,7 +123,6 @@ public class GameManager : MonoBehaviour
 
     private void OnEndOneLoop(DamageData damageData)
     {
-        Debug.Log("start anim...");
         _displayController.SetStats(_currentSession.Player.Entity, _currentSession.Enemy.Entity, _currentSession.Enemy.EntityUi);
 
         _locationManager.StartAnimationAttack(damageData);

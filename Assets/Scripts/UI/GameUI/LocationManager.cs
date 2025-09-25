@@ -74,8 +74,6 @@ public class LocationManager : MonoBehaviour
             _enemyUi.SetPoint(_enemyPoint.transform.position);
             _countReady++;
         }
-
-        Debug.Log("StartLocation anim...");
     }
 
     public void EndLocation()
@@ -84,7 +82,6 @@ public class LocationManager : MonoBehaviour
 
         if (_playerUi != null)
         {
-            Debug.Log("Ready");
             _playerUi.SetPoint(_enemyStartPoint.transform.position);
         }
     }
@@ -128,7 +125,6 @@ public class LocationManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(damageData.FinalDamage);
             yield return target.TakeDamageAnimation(damageData.IsDead);
             _actionView.ViewDamageType(target.transform.position, damageData);
         }
