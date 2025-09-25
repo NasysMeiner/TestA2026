@@ -1,9 +1,5 @@
 public class RageAttribute : Attribute
 {
-    public RageAttribute(Attribute attribute) : base(attribute)
-    {
-    }
-
     public RageAttribute(AttributeParameters parameters) : base(parameters)
     {
     }

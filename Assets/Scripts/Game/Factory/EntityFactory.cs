@@ -24,7 +24,7 @@ public class EntityFactory : MonoBehaviour
     public GeneratedData CreatePlayer(TypeClass typeClass)
     {
         GeneratedData generated = new();
-        Player player = SearchPlayerParameters(typeClass);
+        PlayerParameters player = SearchPlayerParameters(typeClass);
 
         generated.EntityUi = Instantiate(player.PrefabPlayer);
         generated.EntityUi.SetNameEntity(player.TypeClass.ToString());
@@ -38,7 +38,7 @@ public class EntityFactory : MonoBehaviour
     public GeneratedData CreateEnemy()
     {
         GeneratedData generated = new();
-        Enemy enemyData = _enemyData.Enemies[0];
+        EnemyParameters enemyData = _enemyData.Enemies[0];
 
         if (_enemyData.IsRandom)
         {
@@ -82,7 +82,7 @@ public class EntityFactory : MonoBehaviour
     public void LevelUpPlayer(Entity entity, TypeClass typeClass)
     {
         int level = 0;
-        Player player = SearchPlayerParameters(typeClass);
+        PlayerParameters player = SearchPlayerParameters(typeClass);
 
         switch (typeClass)
         {
@@ -101,7 +101,7 @@ public class EntityFactory : MonoBehaviour
             return;
 
         GeneratedParameters parameters = new();
-        SkillArray skillArray = player.Skills[level];
+        SkillArrayParameters skillArray = player.Skills[level];
 
         parameters.TypeClass = player.TypeClass;
         parameters.TypeEntity = TypeEntity.Player;
@@ -124,7 +124,7 @@ public class EntityFactory : MonoBehaviour
         return new Weapon(weaponParameters.TypeWeapon, weaponParameters.TypeDamage, weaponParameters.WeaponDamage);
     }
 
-    private GeneratedParameters GenerateParameters(Player player, int min, int max)
+    private GeneratedParameters GenerateParameters(PlayerParameters player, int min, int max)
     {
         GeneratedParameters parameters = new();
 
@@ -145,7 +145,7 @@ public class EntityFactory : MonoBehaviour
         return parameters;
     }
 
-    private GeneratedParameters GenerateParameters(Enemy enemy)
+    private GeneratedParameters GenerateParameters(EnemyParameters enemy)
     {
         GeneratedParameters parameters = new();
 
@@ -165,39 +165,18 @@ public class EntityFactory : MonoBehaviour
         return parameters;
     }
 
-    private void AddSkill(GeneratedParameters parameters, SkillArray skillArrays)
+    private void AddSkill(GeneratedParameters parameters, SkillArrayParameters skillArrays)
     {
         foreach (TypeSkill typeSkill in skillArrays.Skills)
         {
-            SkillParameters par = SearchSkillParameters(typeSkill);
-            Skill newSkill = null;
-
-            switch (typeSkill)
-            {
-                case TypeSkill.DaggerDarkness:
-                    newSkill = new BaseDamageSkill(par);
-                    break;
-                case TypeSkill.FireBreath:
-                    newSkill = new DragonBreathSkill(par);
-                    break;
-                case TypeSkill.Shield:
-                    newSkill = new ShieldSkill(par);
-                    break;
-                case TypeSkill.PoisonDagger:
-                    par.DebuffTarget = CreateAttribute(par.TypeAttribute);
-                    newSkill = new PoisonDaggerSkill(par);
-                    break;
-                case TypeSkill.StoneSkin:
-                    newSkill = new StoneSkinSkill(par);
-                    break;
-            }
+            Skill newSkill = CreateSkill(typeSkill);
 
             if (newSkill != null)
                 parameters.Skills.Add(newSkill);
         }
     }
 
-    private void AddAttribute(GeneratedParameters parameters, SkillArray skillArrays)
+    private void AddAttribute(GeneratedParameters parameters, SkillArrayParameters skillArrays)
     {
         foreach (TypeAttribute attribute in skillArrays.Attributes)
         {
@@ -224,6 +203,34 @@ public class EntityFactory : MonoBehaviour
                 return attribute;
 
         return _attributeData.AttributeParameters[0];
+    }
+
+    private Skill CreateSkill(TypeSkill typeSkill)
+    {
+        SkillParameters par = SearchSkillParameters(typeSkill);
+        Skill newSkill = null;
+
+        switch (typeSkill)
+        {
+            case TypeSkill.DaggerDarkness:
+                newSkill = new DaggerSkill(par);
+                break;
+            case TypeSkill.FireBreath:
+                newSkill = new DragonBreathSkill(par);
+                break;
+            case TypeSkill.Shield:
+                newSkill = new ShieldSkill(par);
+                break;
+            case TypeSkill.PoisonDagger:
+                par.DebuffTarget = CreateAttribute(par.TypeAttribute);
+                newSkill = new PoisonDaggerSkill(par);
+                break;
+            case TypeSkill.StoneSkin:
+                newSkill = new StoneSkinSkill(par);
+                break;
+        }
+
+        return newSkill;
     }
 
     private Attribute CreateAttribute(TypeAttribute typeAttribute)
@@ -262,9 +269,9 @@ public class EntityFactory : MonoBehaviour
         return _weaponData.Weapons[0];
     }
 
-    private Player SearchPlayerParameters(TypeClass typeClass)
+    private PlayerParameters SearchPlayerParameters(TypeClass typeClass)
     {
-        foreach (Player player in _playerData.Players)
+        foreach (PlayerParameters player in _playerData.Players)
             if (player.TypeClass == typeClass)
                 return player;
 

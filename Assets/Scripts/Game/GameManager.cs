@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private int _maxLevel = 3;
+    [SerializeField] private int _maxLevelPlayer = 3;
 
     private Factory _factory;
 
@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private LocationManager _locationManager;
     private GameLooper _gameLooper;
 
-    private bool isEndLoocation = false;
+    private bool _isEndLoocation = false;
 
     private void OnDestroy()
     {
@@ -60,22 +60,22 @@ public class GameManager : MonoBehaviour
         _displayController.SetStats(_currentSession.Player.Entity, _currentSession.Enemy.Entity, _currentSession.Enemy.EntityUi);
 
         if (_locationManager.TypeLocation == TypeLocation.Shop)
-            _displayController.EnableLevelUpWindow(_currentSession.Player.Entity.LevelData.CurrentLevel >= _maxLevel);
+            _displayController.EnableLevelUpWindow(_currentSession.Player.Entity.LevelData.CurrentLevel >= _maxLevelPlayer);
 
-        if (!isEndLoocation)
+        if (!_isEndLoocation)
             _locationManager.StartLocation();
     }
 
     public void LevelUpPlayer(TypeClass typeClass)
     {
         _factory.LevelUpEntity(_currentSession.Player.Entity, typeClass);
-        isEndLoocation = true;
+        _isEndLoocation = true;
     }
 
     public void EndLocation()
     {
         _locationManager.EndLocation();
-        isEndLoocation = true;
+        _isEndLoocation = true;
     }
 
     public void SwapWeapon()
@@ -118,9 +118,9 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (!isEndLoocation && _locationManager.TypeLocation != TypeLocation.Shop)
+        if (!_isEndLoocation && _locationManager.TypeLocation != TypeLocation.Shop)
             _gameLooper.MakeOneLoop();
-        else if (isEndLoocation)
+        else if (_isEndLoocation)
             CreateLevel();
     }
 
@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            isEndLoocation = true;
+            _isEndLoocation = true;
             _currentSession.Enemy.Entity.SetWeapon(_factory.CreateWeapon(_currentSession.Enemy.Entity.Weapon.TypeWeapon));
             _displayController.ActivateNextLocationWindow(_currentSession.Player.Entity.Weapon, _currentSession.Enemy.Entity.Weapon);
         }
@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
 
     private void DeleteLevel()
     {
-        isEndLoocation = false;
+        _isEndLoocation = false;
         UnsubscribeAllEvent();
         Destroy(_locationManager.gameObject);
         Destroy(_gameLooper.gameObject);

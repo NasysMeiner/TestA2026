@@ -1,8 +1,8 @@
-public class BaseDamageSkill : Skill
+public class DaggerSkill : Skill
 {
     private bool _isMainAttack;
 
-    public BaseDamageSkill(SkillParameters skillParameters) : base(skillParameters)
+    public DaggerSkill(SkillParameters skillParameters) : base(skillParameters)
     {
         _isMainAttack = skillParameters.IsMainAttack;
     }

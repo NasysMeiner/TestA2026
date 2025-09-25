@@ -28,11 +28,6 @@ public class EntityUi : MonoBehaviour
         StartCoroutine(Move(endPoint));
     }
 
-    public void AnimationAttack(Vector3 targetPoint)
-    {
-
-    }
-
     public IEnumerator Attack(Vector3 targetPoint, TypeWeapon playerWeapon = TypeWeapon.Empty, TypeSkill typeSkill = TypeSkill.Empty)
     {
         string weaponAttack = "Attack";

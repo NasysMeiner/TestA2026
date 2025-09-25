@@ -12,7 +12,7 @@ public class LocationFactory : MonoBehaviour
     public GeneratedLocation CreateLocation(TypeLocation typeLocation)
     {
         GeneratedLocation generated = new();
-        Location location = SearchLocation(typeLocation);
+        LocationParameters location = SearchLocation(typeLocation);
 
         LocationManager locationManager = Instantiate(location.PrefabLocation);
         locationManager.SetTypeLocation(location.TypeLocation);
@@ -22,15 +22,11 @@ public class LocationFactory : MonoBehaviour
         return generated;
     }
 
-    private Location SearchLocation(TypeLocation typeLocation)
+    private LocationParameters SearchLocation(TypeLocation typeLocation)
     {
-        foreach (Location loc in _locationData.Locations)
-        {
+        foreach (LocationParameters loc in _locationData.Locations)
             if (loc.TypeLocation == typeLocation)
-            {
                 return loc;
-            }
-        }
 
         return new();
     }

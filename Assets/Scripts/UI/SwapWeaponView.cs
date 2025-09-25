@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -21,8 +19,8 @@ public class SwapWeaponView : MonoBehaviour
 
     public void SetWeaponStats(Weapon player, Weapon enemy)
     {
-        WeaponElements playerWeapon = SearchWeaponData(player.TypeWeapon);
-        WeaponElements enemyWeapon = SearchWeaponData(enemy.TypeWeapon);
+        WeaponElementsParameters playerWeapon = SearchWeaponData(player.TypeWeapon);
+        WeaponElementsParameters enemyWeapon = SearchWeaponData(enemy.TypeWeapon);
 
         _nameWeaponPlayer.text = playerWeapon.Name;
         _typeWeaponPlayer.text = player.TypeDamage.ToString();
@@ -33,9 +31,9 @@ public class SwapWeaponView : MonoBehaviour
         _damageWeaponEnemy.text = enemy.Damage.ToString();
     }
 
-    private WeaponElements SearchWeaponData(TypeWeapon typeWeapon)
+    private WeaponElementsParameters SearchWeaponData(TypeWeapon typeWeapon)
     {
-        foreach (WeaponElements elements in _weaponData.WeaponElements)
+        foreach (WeaponElementsParameters elements in _weaponData.WeaponElements)
             if (elements.TypeWeapon == typeWeapon)
                 return elements;
 

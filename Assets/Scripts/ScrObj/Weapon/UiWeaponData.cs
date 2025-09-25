@@ -5,13 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Weapon/UiWeaponData")]
 public class UiWeaponData : ScriptableObject
 {
-    public List<WeaponElements> WeaponElements;
-}
-
-[Serializable]
-public class WeaponElements
-{
-    public TypeWeapon TypeWeapon;
-    public string Name;
-    public Sprite Icon;
+    public List<WeaponElementsParameters> WeaponElements;
 }
