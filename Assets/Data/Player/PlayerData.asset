@@ -27,7 +27,7 @@ MonoBehaviour:
       Attributes: 03000000
     - Strength: 0
       Dexterity: 0
-      Endurance: 1
+      Endurance: 0
       Skills: 03000000
       Attributes: 
     - Strength: 1

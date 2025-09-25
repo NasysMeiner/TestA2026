@@ -16,7 +16,7 @@ MonoBehaviour:
   - IsMainAttack: 1
     TypeSkill: 1
     SkillVariation: 0
-    Recharg: 3
+    Recharg: 2
     DamageBonus: 3
     TypeAttribute: 0
   - IsMainAttack: 0
