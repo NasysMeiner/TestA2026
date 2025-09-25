@@ -35,7 +35,6 @@ public class EntityUi : MonoBehaviour
         if (typeSkill == TypeSkill.FireBreath)
         {
             weaponAttack = "Breath";
-            Debug.Log("FIRE");
             AtPoint?.Invoke();
         }
         else
