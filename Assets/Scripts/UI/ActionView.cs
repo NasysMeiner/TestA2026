@@ -35,17 +35,14 @@ public class ActionView : MonoBehaviour
     {
         pos = _camera.WorldToScreenPoint(pos);
 
-        if (damageData.Damage + damageData.DamageWeapon != 0)
-        {
-            _textStandartDamage.text = (damageData.Damage + damageData.DamageWeapon).ToString();
-            _textStandartDamage.transform.position = pos + _offVectorStandartDamage;
-            _textStandartDamage.gameObject.SetActive(true);
-            StartCoroutine(TextAnim(_textStandartDamage));
-        }
+        _textStandartDamage.text = (damageData.Damage + damageData.DamageWeapon).ToString();
+        _textStandartDamage.transform.position = pos + _offVectorStandartDamage;
+        _textStandartDamage.gameObject.SetActive(true);
+        StartCoroutine(TextAnim(_textStandartDamage));
 
-        foreach(KeyValuePair<TypeAttribute, int> pair in damageData.damageAttribute)
+        foreach (KeyValuePair<TypeAttribute, int> pair in damageData.damageAttribute)
         {
-            if(pair.Key == TypeAttribute.Poison && pair.Value != 0)
+            if (pair.Key == TypeAttribute.Poison && pair.Value != 0)
             {
                 _textPoisonDamage.text = pair.Value.ToString();
                 _textPoisonDamage.transform.position = pos - _offVectorPoisonDamage;
@@ -60,7 +57,7 @@ public class ActionView : MonoBehaviour
         Color startColor = text.color;
         Color color = startColor;
 
-        while(true)
+        while (true)
         {
             if (color.a <= 0)
                 break;

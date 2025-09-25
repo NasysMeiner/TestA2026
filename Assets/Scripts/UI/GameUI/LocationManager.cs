@@ -122,15 +122,16 @@ public class LocationManager : MonoBehaviour
 
         yield return attacker.Attack(target.transform.position, playerWeapon, damageData.UseMainSkill);
 
-        if (damageData.FinalDamage != 0)
+        if(damageData.IsMiss)
+        {
+            _actionView.ViewTextMiss(target.transform.position);
+        }
+        else
         {
             Debug.Log(damageData.FinalDamage);
             yield return target.TakeDamageAnimation(damageData.IsDead);
             _actionView.ViewDamageType(target.transform.position, damageData);
         }
-
-        if(damageData.IsMiss)
-            _actionView.ViewTextMiss(target.transform.position);
 
         UpdateHealthView(damageData);
 
